@@ -38,6 +38,9 @@ namespace Barcode
         /// 电子秤类型
         /// </summary>
         private string strType = "XK3190-A1";
+
+        private int mateCount = 5;
+        private int tryCount = 5;
         #endregion
 
         public KCCPort()
@@ -71,176 +74,32 @@ namespace Barcode
 
         }
 
-        /// <summary>
-        /// 初始化从电子秤上获取到的数据，返回重量
-        /// </summary>
-        /// <param name="Weight">电子秤上读取到的数据</param>
-        /// <returns></returns>
-        private string DataManage(string Weight)
+        private string ExtractWeight(string str)
         {
-            string strResult = "";
-            try
+            var weights = str.Split('\r');
+            string def = "";
+            int count = 0;
+
+            foreach(string weight in weights)
             {
-                if (Weight.IndexOf("+") > 0)
+                if(weight != def)
                 {
-                    strResult = Weight.Substring(Weight.IndexOf("+"), Weight.Length - (4 + Weight.IndexOf("+")));
+                    count = 0;
                 }
-                else if (Weight.IndexOf("-") > 0)
+                else if(weight.EndsWith("R"))
                 {
-                    strResult = Weight.Substring(Weight.IndexOf("-"), Weight.Length - (4 + Weight.IndexOf("-")));
+                    count++;
                 }
-                else
+                def = weight;
+
+                if(count == mateCount)
                 {
-                    strResult = "ERR";
+                    break;
                 }
-                return strResult;
             }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+
+            return count == mateCount ? def.TrimEnd('R') : "error";
         }
-
-        /// <summary>
-        /// 获取数据
-        /// </summary>
-        /// <param name="Weight"></param>
-        /// <returns></returns>
-        public string DataManageXK(string Weight)
-        {
-            decimal result = 0;
-            try
-            {
-                if (Weight != null && Weight != string.Empty)
-                { // 正则表达式剔除非数字字符（不包含小数点.）
-                    Weight = Regex.Replace(Weight, @"[^\d.\d]", "");
-                    // 如果是数字，则转换为decimal类型 
-                    if (Regex.IsMatch(Weight, @"^[+-]?\d*[.]?\d*$"))
-                    {
-                        result = decimal.Parse(Weight);
-                    }
-                }
-                return result.ToString();
-            }
-            catch
-            { }
-            return result.ToString();
-        }
-
-        private string SelectValue(string Weight, string type)
-        {
-            string strWeight = "";
-            decimal value = 0;
-            try
-            {
-                switch (type.Trim())
-                {
-                    case "HENGZHIFU":
-                        {
-                            strWeight = DataManage(Weight).Trim();
-                            if (strWeight == "ERR")
-                            {
-                                strWeight = DataManageXK(Weight);
-                            }
-                            return strWeight;
-                        }
-                    case "XK3190-A1":
-                        strWeight = DataManageXK(Weight);
-                        decimal.TryParse(strWeight, out value);
-                        return (value / 10).ToString();
-                    case "HENGZHIFU-75KG":
-                        strWeight = DataManageXK(Weight);
-                        decimal.TryParse(strWeight, out value);
-                        return (value * 1000).ToString();
-                    default:
-                        return DataManageXK(Weight);
-                }
-            }
-            catch
-            {
-            }
-            return "ERR";
-        }
-
-        /// <summary>
-        /// 获取重量，单位：G，如果返回ERR，则表示获取数据失败，返回ConnectionError则表示连接失败
-        /// </summary>
-        /// <param name="PortName">端口号</param>
-        /// <param name="DataBits">数据位</param>
-        /// <param name="BaudRate">波特率</param>
-        /// <returns>string</returns>
-        public string ProductWeight(string PortName, int DataBits, int BaudRate)
-        {
-            string strResult = "";
-            try
-            {
-                switch (strType)
-                {
-                    case "HENGZHIFU":
-                        {
-                            if (initComPort(PortName, DataBits, BaudRate))
-                            {
-                                comPort.Open();
-                                strResult = comPort.ReadLine();
-                                comPort.Close();
-                            }
-                            else
-                            {
-                                strResult = "端口初始化失败，请确认！";
-                            }
-                            return SelectValue(strResult, strType);
-                        }
-                    case "XK3190-A1":
-                        {
-                            if (initComPort(PortName, DataBits, BaudRate))
-                            {
-                                comPort.Open();
-                                System.Threading.Thread.Sleep(1000);
-                                strResult = comPort.ReadExisting();
-                                System.Threading.Thread.Sleep(1000);
-                                comPort.Close();
-                            }
-                            else
-                            {
-                                strResult = "端口初始化失败，请确认！";
-                            }
-                            return SelectValue(splitStrResult(strResult), strType);
-                        }
-                    case "HENGZHIFU-75KG":
-                        {
-                            if (initComPort(strPortName, intDataBits, intBaudRate))
-                            {
-                                comPort.Open();
-                                strResult = comPort.ReadLine();
-                                comPort.Close();
-                            }
-                            else
-                            {
-                                strResult = "端口初始化失败，请确认！";
-                            }
-                            return SelectValue(strResult, strType);
-                        }
-                    default:
-                        {                            
-                            //UTIL.MsgTool.ShowMessage("电子秤类型错误，请重新配置！");
-                            return "ERR";
-                        }
-                }
-            }
-            catch (Exception ex)
-            {
-                //UTIL.MsgTool.ShowMessage("电子秤连接失败，请确认电脑是否与电子秤正确连接！" + ex.Message);
-                return "ConnectionError";
-            }
-            finally
-            {
-                if (comPort.IsOpen)
-                {
-                    comPort.Close();
-                }
-            }
-
-        }        
 
         /// <summary>
         /// 获取重量，单位：G，如果返回ERR，则表示获取数据失败，所有参数设置都采用默认设置，返回ConnectionError则表示连接失败
@@ -260,18 +119,23 @@ namespace Barcode
                             if (initComPort(strPortName, intDataBits, intBaudRate))
                             {
                                 comPort.Open();
-                                System.Threading.Thread.Sleep(1000);
-                                strResult = comPort.ReadExisting();
-                                System.Threading.Thread.Sleep(1000);
+                                string weight = "error";
+                                int count = 1;
+                                while(weight == "error" && count <= tryCount)
+                                {
+                                    System.Threading.Thread.Sleep(500);
+                                    strResult = comPort.ReadExisting();
+                                    weight = ExtractWeight(strResult);
+                                    count++;
+                                }
                                 comPort.Close();
-                                result.Value = strResult;
+                                result.Value = weight;
                             }
                             else
                             {
                                 result.IsError = true;
                                 strResult = "端口初始化失败，请确认！";
-                            }
-                            //strResult = SelectValue(splitStrResult(strResult), strType);
+                            }                            
                             return result;
                         }                    
                     default:
@@ -287,70 +151,6 @@ namespace Barcode
                 result.IsError = true;
                 result.Value = "电子秤连接失败，请确认电脑是否与电子秤正确连接！" + ex.Message;
                 return result;
-            }
-            finally
-            {
-                if (comPort.IsOpen)
-                {
-                    comPort.Close();
-                }
-            }
-        }
-
-        /// <summary>
-        /// 获取重量，单位：G，如果返回ERR，则表示获取数据失败，除端口号外的所有参数设置都采用默认设置，返回ConnectionError则表示连接失败，
-        /// </summary>
-        /// <param name="ProtName">端口号</param>
-        /// <returns>string</returns>
-        public string ProductWeight(string ProtName)
-        {
-            string strResult = "";
-            try
-            {
-                switch (strType)
-                {
-                    case "HENGZHIFU":
-                        {
-                            if (initComPort(ProtName, intDataBits, intBaudRate))
-                            {
-                                comPort.Open();
-                                strResult = comPort.ReadLine();
-                                comPort.Close();
-                            }
-                            else
-                            {
-                                strResult = "端口初始化失败，请确认！";
-                            }
-                            return SelectValue(strResult, strType);
-                        }
-                    case "XK3190-A1":
-                        {
-                            if (initComPort(ProtName, intDataBits, intBaudRate))
-                            {
-                                comPort.Open();
-                                System.Threading.Thread.Sleep(1000);
-                                strResult = comPort.ReadExisting();
-                                System.Threading.Thread.Sleep(1000);
-                                comPort.Close();
-                            }
-                            else
-                            {
-                                strResult = "端口初始化失败，请确认！";
-                            }
-                            return SelectValue(splitStrResult(strResult), strType);
-                        }
-                    default:
-                        {
-                            //UTIL.MsgTool.ShowMessage("电子秤类型错误，请重新配置！");
-                            return "ERR";
-                        }
-                }
-
-            }
-            catch (Exception ex)
-            {
-                //UTIL.MsgTool.ShowMessage("电子秤连接失败，请确认电脑是否与电子秤正确连接！" + ex.Message);
-                return "ConnectionError";
             }
             finally
             {
