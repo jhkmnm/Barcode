@@ -47,7 +47,7 @@ namespace Barcode
 
         private void button1_Click(object sender, EventArgs e)
         {
-            ApiTest();
+            //ApiTest();
 
             PrintDocument print = new PrintDocument();
             string sDefault = print.PrinterSettings.PrinterName;//默认打印机名
@@ -77,21 +77,20 @@ namespace Barcode
 
         }
 
+        ProductWeight rpt = null;
         private void Print(DataTable dt)
         {
             //btnPrint.Enabled = false;
             Cursor = Cursors.WaitCursor;
-
-            var rpt = new ProductWeight();            
+                        
             if (dt == null || dt.Rows.Count == 0)
             {
                 MessageBox.Show("请选择要打印的项");
                 return;
             }
-            
-            try
+            if(rpt == null)
             {
-                rpt.SetDataSource(dt);
+                rpt = new ProductWeight();
                 rpt.PrintOptions.PrinterName = textBox2.Text;//System.Configuration.ConfigurationManager.AppSettings.Get("PrintName_InStockLabel");
                 var doc = new System.Drawing.Printing.PrintDocument
                 {
@@ -101,22 +100,26 @@ namespace Barcode
                             //System.Configuration.ConfigurationManager.AppSettings.Get("PrintName_InStockLabel")
                     }
                 };
-                var papername = "40*30";//System.Configuration.ConfigurationManager.AppSettings.Get("PaperName_4585");
+                var papername = "40 x 30";//System.Configuration.ConfigurationManager.AppSettings.Get("PaperName_4585");
                 if (!string.IsNullOrEmpty(papername))
                 {
-                    var rawKind = 1;
                     for (var i = 0; i <= doc.PrinterSettings.PaperSizes.Count - 1; i++)
                     {
                         if (doc.PrinterSettings.PaperSizes[i].PaperName.ToLower() == papername)
                         {
-                            rawKind = doc.PrinterSettings.PaperSizes[i].RawKind;
+                            rpt.PrintOptions.PaperSize = (CrystalDecisions.Shared.PaperSize)doc.PrinterSettings.PaperSizes[i].RawKind;
+                            break;
                         }
                     }
-                    rpt.PrintOptions.PaperSize = (CrystalDecisions.Shared.PaperSize)rawKind;
                 }
+            }
+            
+            try
+            {
+                rpt.SetDataSource(dt);                
                 rpt.PrintToPrinter(1, true, 0, 0);
-                rpt.Close();
-                rpt.Dispose();
+                //rpt.Close();
+                //rpt.Dispose();
                 MessageBox.Show("打印完成");
             }
             catch (Exception ex)
@@ -141,24 +144,30 @@ namespace Barcode
                 new DataColumn("Weight", typeof(string))
             });
 
-            KCCPort port = new KCCPort();
-            var weight = port.ProductWeight();
-            if(weight.IsError)
-            {
-                if (weight.Value != "error")
-                    MessageBox.Show(weight.Value);
-                else
-                    MessageBox.Show("读取重量失败");
-            }
+            //KCCPort port = new KCCPort();
+            //var weight = port.ProductWeight();
+            //if(weight.IsError)
+            //{
+            //    if (weight.Value != "error")
+            //        MessageBox.Show(weight.Value);
+            //    else
+            //        MessageBox.Show("读取重量失败");
+            //}
 
             var newrow = printdata.NewRow();
             newrow["PIndex"] = 1;
-            newrow["CustName"] = "公司名称abc";
+            newrow["CustName"] = "白开水科技有限公司";
             newrow["ProductName"] = "小白菜";
             newrow["Unit"] = "斤";
             newrow["Weight"] = "4.56";
             printdata.Rows.Add(newrow);
             Print(printdata);
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            KCCPort port = new KCCPort();
+            var weight = port.ProductWeight();
         }
     }
 }

@@ -113,7 +113,7 @@ namespace Barcode
             try
             {
                 switch (strType)
-                {                    
+                {
                     case "XK3190-A1":
                         {
                             if (initComPort(strPortName, intDataBits, intBaudRate))
