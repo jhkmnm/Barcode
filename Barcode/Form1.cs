@@ -17,11 +17,7 @@ namespace Barcode
     public partial class Form1 : Form
     {
         string str_api = "http://czd.xinlvs.com/index.php/api/api";
-        const string token = "chzpdx2014mn1989";
-        string str_province = "/getProvince";
-        string str_city = "/getCity";
-        string str_district = "/getDistrict";
-        string str_login = "/login";
+        const string token = "chzpdx2014mn1989";        
         string str_Chooser = "/getChooser";
         string str_ChooserData = "/getChooseData";
         string str_SaveAndPrint = "/saveAndPrint";
@@ -30,53 +26,21 @@ namespace Barcode
         public Form1()
         {
             InitializeComponent();
+            LoadChooser();           
         }
 
-        private string Post(string url, string postdata)
+        private void LoadChooser()
         {
-            Encoding myEncoding = Encoding.UTF8;            
-            string sContentType = "application/x-www-form-urlencoded";
-            HttpWebRequest req;
-                       
-            try
-            {
-                req = HttpWebRequest.Create(url) as HttpWebRequest;
-                req.Method = "POST";
-                req.Accept = "*/*";
-                req.KeepAlive = false;
-                req.CachePolicy = new HttpRequestCachePolicy(HttpRequestCacheLevel.NoCacheNoStore);
-
-                byte[] bufPost = myEncoding.GetBytes(postdata);
-                    req.ContentType = sContentType;
-                    req.ContentLength = bufPost.Length;
-                    Stream newStream = req.GetRequestStream();
-                    newStream.Write(bufPost, 0, bufPost.Length);
-                    newStream.Close();
-
-                HttpWebResponse res = req.GetResponse() as HttpWebResponse;
-                try
-                {
-                    Encoding encoding = Encoding.UTF8;
-                    System.Diagnostics.Debug.WriteLine(encoding);
-                    
-                    using (Stream resStream = res.GetResponseStream())
-                    {
-                        using (StreamReader resStreamReader = new StreamReader(resStream, encoding))
-                        {
-                            return resStreamReader.ReadToEnd();
-                        }
-                    }
-                }
-                finally
-                {
-                    res.Close();
-                }
-            }
-            catch (Exception ex)
-            {
-                return "";
-            }
+            var htmlstr = Html.Post(str_api + str_Chooser, string.Format("token={0}&sessionId={1}", token, User.SessionID));
+            var choosers = JsonConvert.DeserializeObject<List<Chooser>>(htmlstr);
+            choosers.Insert(0, new Chooser { Chooser_ID = "0", Name = "请选择" });
+            ddlChooser.DataSource = choosers;
+            ddlChooser.DisplayMember = "Name";
+            ddlChooser.ValueMember = "Chooser_ID";
+            ddlChooser.SelectedIndex = 0;
         }
+
+        
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -99,26 +63,15 @@ namespace Barcode
             //1. 程序加载时请求province,city,district得到districtid
             //2. 登录请求login,得到sessionid
             //3. 登录成功后，请求chooser得到分拣员，请求chooserdata            //
-
-            var htmlstr = Post(str_api + str_province, "token=chzpdx2014mn1989");
-            List<Region> province = JsonConvert.DeserializeObject<List<Region>>(htmlstr);
-            htmlstr = Post(str_api + str_city, "token=chzpdx2014mn1989&provinceId=" + province[0].region_id);
-            var regionresult = JsonConvert.DeserializeObject<RegionResult>(htmlstr);
-            var city = regionresult.Data;
-            htmlstr = Post(str_api + str_district, "token=chzpdx2014mn1989&cityId=" + city[4].region_id);
-            regionresult = JsonConvert.DeserializeObject<RegionResult>(htmlstr);
-            var district = regionresult.Data;
-            htmlstr = Post(str_api + str_login, "token=chzpdx2014mn1989&adminName=湛西&adminPwd=zhanxi&districtId=" + district[0].region_id);
-            var userresult = JsonConvert.DeserializeObject<UserResult>(htmlstr);
-            var session = userresult.Data;
-            htmlstr = Post(str_api + str_Chooser, "token=chzpdx2014mn1989&sessionId=" + session.SessionID);
-            var choosers = JsonConvert.DeserializeObject<List<Chooser>>(htmlstr);
+            
+            
+            
             //&page=&chooser_id=&send_order_top=&send_order_down=&send_date=&is_assig=&is_wrong=&is_owegoods=
-            htmlstr = Post(str_api + str_ChooserData, string.Format("token=chzpdx2014mn1989&sessionId={0}", session.SessionID));
-            var chooserdata = JsonConvert.DeserializeObject<ChooserDataResult>(htmlstr);
-            string str = string.Format("token=chzpdx2014mn1989&sessionId={0}&num=&id=", session.SessionID);
-            htmlstr = Post(str_api + str_SaveAndPrint, str);
-            result = JsonConvert.DeserializeObject<Result>(htmlstr);
+            //htmlstr = Post(str_api + str_ChooserData, string.Format("token=chzpdx2014mn1989&sessionId={0}", session.SessionID));
+            //var chooserdata = JsonConvert.DeserializeObject<ChooserDataResult>(htmlstr);
+            //string str = string.Format("token=chzpdx2014mn1989&sessionId={0}&num=&id=", session.SessionID);
+            //htmlstr = Post(str_api + str_SaveAndPrint, str);
+            //result = JsonConvert.DeserializeObject<Result>(htmlstr);
         }
 
         ProductWeight rpt = null;
@@ -327,11 +280,16 @@ namespace Barcode
         public string SessionID { get; set; }
     }
 
+    public class User
+    {
+        public static string SessionID;
+    }
+
     public class Region
     {
         public int region_id { get; set; }
         public string region_name { get; set; }
-    }
+    }    
 
     public class Chooser
     {
@@ -366,4 +324,53 @@ namespace Barcode
         public string K_Num { get; set; }
         public string Chooser_ID { get; set; }
     }    
+
+    public class Html
+    {
+        public static string Post(string url, string postdata)
+        {
+            Encoding myEncoding = Encoding.UTF8;
+            string sContentType = "application/x-www-form-urlencoded";
+            HttpWebRequest req;
+
+            try
+            {
+                req = WebRequest.Create(url) as HttpWebRequest;
+                req.Method = "POST";
+                req.Accept = "*/*";
+                req.KeepAlive = false;
+                req.CachePolicy = new HttpRequestCachePolicy(HttpRequestCacheLevel.NoCacheNoStore);
+
+                byte[] bufPost = myEncoding.GetBytes(postdata);
+                req.ContentType = sContentType;
+                req.ContentLength = bufPost.Length;
+                Stream newStream = req.GetRequestStream();
+                newStream.Write(bufPost, 0, bufPost.Length);
+                newStream.Close();
+
+                HttpWebResponse res = req.GetResponse() as HttpWebResponse;
+                try
+                {
+                    Encoding encoding = Encoding.UTF8;
+                    System.Diagnostics.Debug.WriteLine(encoding);
+
+                    using (Stream resStream = res.GetResponseStream())
+                    {
+                        using (StreamReader resStreamReader = new StreamReader(resStream, encoding))
+                        {
+                            return resStreamReader.ReadToEnd();
+                        }
+                    }
+                }
+                finally
+                {
+                    res.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                return "";
+            }
+        }
+    }
 }
