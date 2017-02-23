@@ -6,6 +6,11 @@ using System.Drawing.Printing;
 using CsharpHttpHelper;
 using Newtonsoft.Json;
 using System.Data;
+using System.Threading;
+using System.Collections.Generic;
+using System.Text;
+using System.Net;
+using System.Net.Cache;
 
 namespace Barcode
 {
@@ -29,52 +34,91 @@ namespace Barcode
 
         private string Post(string url, string postdata)
         {
-            HttpItem item = new HttpItem
+            Encoding myEncoding = Encoding.UTF8;            
+            string sContentType = "application/x-www-form-urlencoded";
+            HttpWebRequest req;
+                       
+            try
             {
-                URL = url,
-                Postdata = postdata,
-                Method = "POST"
-            };
-            return GetHtml(item);
-        }
+                req = HttpWebRequest.Create(url) as HttpWebRequest;
+                req.Method = "POST";
+                req.Accept = "*/*";
+                req.KeepAlive = false;
+                req.CachePolicy = new HttpRequestCachePolicy(HttpRequestCacheLevel.NoCacheNoStore);
 
-        private string GetHtml(HttpItem item)
-        {
-            HttpHelper http = new HttpHelper();
-            HttpResult htmlr = http.GetHtml(item);
-            return htmlr.Html;
+                byte[] bufPost = myEncoding.GetBytes(postdata);
+                    req.ContentType = sContentType;
+                    req.ContentLength = bufPost.Length;
+                    Stream newStream = req.GetRequestStream();
+                    newStream.Write(bufPost, 0, bufPost.Length);
+                    newStream.Close();
+
+                HttpWebResponse res = req.GetResponse() as HttpWebResponse;
+                try
+                {
+                    Encoding encoding = Encoding.UTF8;
+                    System.Diagnostics.Debug.WriteLine(encoding);
+                    
+                    using (Stream resStream = res.GetResponseStream())
+                    {
+                        using (StreamReader resStreamReader = new StreamReader(resStream, encoding))
+                        {
+                            return resStreamReader.ReadToEnd();
+                        }
+                    }
+                }
+                finally
+                {
+                    res.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                return "";
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //ApiTest();
+            ApiTest();
 
-            PrintDocument print = new PrintDocument();
-            string sDefault = print.PrinterSettings.PrinterName;//默认打印机名
-            textBox2.Text = sDefault;
+            //PrintDocument print = new PrintDocument();
+            //string sDefault = print.PrinterSettings.PrinterName;//默认打印机名
+            //textBox2.Text = sDefault;
 
-            foreach (string sPrint in PrinterSettings.InstalledPrinters)//获取所有打印机名称
-            {
-                listBox1.Items.Add(sPrint);
-                if (sPrint == sDefault)
-                    listBox1.SelectedIndex = listBox1.Items.IndexOf(sPrint);
-            }
+            //foreach (string sPrint in PrinterSettings.InstalledPrinters)//获取所有打印机名称
+            //{
+            //    listBox1.Items.Add(sPrint);
+            //    if (sPrint == sDefault)
+            //        listBox1.SelectedIndex = listBox1.Items.IndexOf(sPrint);
+            //}
         }
 
         private void ApiTest()
         {
             //1. 程序加载时请求province,city,district得到districtid
             //2. 登录请求login,得到sessionid
-            //3. 登录成功后，请求chooser得到分拣员，请求chooserdata
+            //3. 登录成功后，请求chooser得到分拣员，请求chooserdata            //
 
-            var province = Post(str_api + str_province, "token=chzpdx2014mn1989");
-            var city = Post(str_api + str_city, "token=chzpdx2014mn1989&provinceId=");
-            var district = Post(str_api + str_district, "token=chzpdx2014mn1989&cityId=");
-            var user = Post(str_api + str_login, "token=chzpdx2014mn1989&adminName=&adminPwd=&districtId=");
-            var chooser = Post(str_api + str_Chooser, "token=chzpdx2014mn1989&sessionId=");
-            var chooserdata = Post(str_api + str_ChooserData, "token=chzpdx2014mn1989&sessionId=&page=&chooser_id=&send_order_top=&send_order_down=&send_date=&is_assig=&is_wrong=&is_owegoods=");
-            var saveandprint = Post(str_api + str_SaveAndPrint, "token=chzpdx2014mn1989&sessionId=&num=&id=");
-
+            var htmlstr = Post(str_api + str_province, "token=chzpdx2014mn1989");
+            List<Region> province = JsonConvert.DeserializeObject<List<Region>>(htmlstr);
+            htmlstr = Post(str_api + str_city, "token=chzpdx2014mn1989&provinceId=" + province[0].region_id);
+            var regionresult = JsonConvert.DeserializeObject<RegionResult>(htmlstr);
+            var city = regionresult.Data;
+            htmlstr = Post(str_api + str_district, "token=chzpdx2014mn1989&cityId=" + city[4].region_id);
+            regionresult = JsonConvert.DeserializeObject<RegionResult>(htmlstr);
+            var district = regionresult.Data;
+            htmlstr = Post(str_api + str_login, "token=chzpdx2014mn1989&adminName=湛西&adminPwd=zhanxi&districtId=" + district[0].region_id);
+            var userresult = JsonConvert.DeserializeObject<UserResult>(htmlstr);
+            var session = userresult.Data;
+            htmlstr = Post(str_api + str_Chooser, "token=chzpdx2014mn1989&sessionId=" + session.SessionID);
+            var choosers = JsonConvert.DeserializeObject<List<Chooser>>(htmlstr);
+            //&page=&chooser_id=&send_order_top=&send_order_down=&send_date=&is_assig=&is_wrong=&is_owegoods=
+            htmlstr = Post(str_api + str_ChooserData, string.Format("token=chzpdx2014mn1989&sessionId={0}", session.SessionID));
+            var chooserdata = JsonConvert.DeserializeObject<ChooserDataResult>(htmlstr);
+            string str = string.Format("token=chzpdx2014mn1989&sessionId={0}&num=&id=", session.SessionID);
+            htmlstr = Post(str_api + str_SaveAndPrint, str);
+            result = JsonConvert.DeserializeObject<Result>(htmlstr);
         }
 
         ProductWeight rpt = null;
@@ -164,10 +208,162 @@ namespace Barcode
             Print(printdata);
         }
 
+        KCCPort port = new KCCPort();
+        Thread thread;
+        ManualResetEvent ma;
+        bool on_off = false;
+        bool stop = false;
+
         private void button3_Click(object sender, EventArgs e)
         {
-            KCCPort port = new KCCPort();
-            var weight = port.ProductWeight();
+            if (port.initComPort("strPortName"))
+            {
+                if(MessageBox.Show("秤连接成功，是否开始秤重", "提示", MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.OK)
+                {
+                    GetWeightRun();
+                }
+            }
+            else
+            {
+                MessageBox.Show("端口初始化失败，请确认！");
+            }
         }
+
+        #region 秤
+        private void GetWeightRun()
+        {
+            thread = new Thread(GetWeight);
+            thread.Start();
+        }
+
+        private void Off()
+        {
+            on_off = true;
+        }
+
+        private void On()
+        {
+            on_off = false;
+        }
+
+        private void Stop()
+        {
+            stop = true;
+        }
+
+        private void GetWeight()
+        {
+            if (stop)
+                return;
+            if (on_off)
+            {
+                ma = new ManualResetEvent(false);
+                ma.WaitOne();
+            }
+            var weight = port.ProductWeight();
+            this.Invoke(new Action(() =>
+            {
+                textBox2.Text = ExtractWeight(weight);
+            }));
+
+            Thread.Sleep(100);
+        }
+
+        private string ExtractWeight(string str)
+        {
+            var weights = str.Split('\r');
+            string def = "";
+            int count = 0;
+
+            return weights[weights.Length - 1];
+
+            //foreach (string weight in weights)
+            //{
+            //    if (weight != def)
+            //    {
+            //        count = 0;
+            //    }
+            //    else if (weight.EndsWith("R"))
+            //    {
+            //        count++;
+            //    }
+            //    def = weight;
+
+            //    if (count == mateCount)
+            //    {
+            //        break;
+            //    }
+            //}
+
+            //return count == mateCount ? def.TrimEnd('R') : "error";
+        }
+
+        #endregion
     }
+
+    public class Result
+    {
+        public string Status{ get; set; }
+        public string Message{ get; set; }
+    }
+
+    public class RegionResult : Result
+    {        
+        public List<Region> Data{ get; set; }
+    }
+
+    public class UserResult : Result
+    {
+        public Session Data { get; set; }
+    }
+
+    public class ChooserDataResult:Result
+    {
+        public List<ChooseData> Data { get; set; }
+    }
+
+    public class Session
+    {
+        public string SessionID { get; set; }
+    }
+
+    public class Region
+    {
+        public int region_id { get; set; }
+        public string region_name { get; set; }
+    }
+
+    public class Chooser
+    {
+        public string Chooser_ID { get; set; }
+        public string Name { get; set; }
+        public string Phone{ get; set; }
+        public int Status{ get; set; }
+        public int Rid{ get; set; }
+    }
+
+    public class ChooseData
+    {
+        public string ID { get; set; }
+        public string O_ID { get; set; }
+        public string P_ID { get; set; }
+        public string Is_Assign { get; set; }
+        public string Is_Owegoods { get; set; }
+        public string Is_Wrong { get; set; }
+        public string Num { get; set; }
+        public string Price { get; set; }
+        public string Real_Num { get; set; }
+        public string Order_Date { get; set; }
+        public string U_ID { get; set; }
+        public string Send_Date { get; set; }
+        public string Uid { get; set; }
+        public string Send_Order { get; set; }
+        public string CName { get; set; }
+        public string Choose_Order { get; set; }
+        public string Name { get; set; }
+        public string Remark { get; set; }
+        public string Unit { get; set; }
+        public string K_Num { get; set; }
+        public string Chooser_ID { get; set; }
+    }    
 }

@@ -10,7 +10,6 @@ namespace Barcode
 {
     /// <summary>
     /// 获取电子秤所秤产品的重量
-    /// 夏灿华 2011-08-17
     /// 默认端口：COM1
     /// 默认数据位：8
     /// 默认波特率9600
@@ -55,13 +54,13 @@ namespace Barcode
         /// <param name="DataBits">数据位</param>
         /// <param name="BaudRate">波特率</param>
         /// <returns></returns>
-        private bool initComPort(string PortName, int DataBits, int BaudRate)
+        public bool initComPort(string PortName)
         {
             try
             {
                 comPort.PortName = PortName;
-                comPort.DataBits = DataBits;
-                comPort.BaudRate = BaudRate;
+                comPort.DataBits = intDataBits;
+                comPort.BaudRate = intBaudRate;
                 comPort.ReadTimeout = 3000;
                 comPort.Parity = Parity.None;
                 comPort.StopBits = StopBits.One;
@@ -101,63 +100,23 @@ namespace Barcode
             return count == mateCount ? def.TrimEnd('R') : "error";
         }
 
-        /// <summary>
-        /// 获取重量，单位：G，如果返回ERR，则表示获取数据失败，所有参数设置都采用默认设置，返回ConnectionError则表示连接失败
-        /// </summary>
-        /// <returns>string </returns>
-        public ReturnResult ProductWeight()
+        public string ProductWeight()
         {
-            ReturnResult result = new ReturnResult();
-
-            string strResult = "";
             try
             {
-                switch (strType)
+                switch(strType)
                 {
                     case "XK3190-A1":
-                        {
-                            if (initComPort(strPortName, intDataBits, intBaudRate))
-                            {
-                                comPort.Open();
-                                string weight = "error";
-                                int count = 1;
-                                while(weight == "error" && count <= tryCount)
-                                {
-                                    System.Threading.Thread.Sleep(500);
-                                    strResult = comPort.ReadExisting();
-                                    weight = ExtractWeight(strResult);
-                                    count++;
-                                }
-                                comPort.Close();
-                                result.Value = weight;
-                            }
-                            else
-                            {
-                                result.IsError = true;
-                                strResult = "端口初始化失败，请确认！";
-                            }                            
-                            return result;
-                        }                    
+                        if (!comPort.IsOpen)
+                            comPort.Open();
+                        return comPort.ReadExisting();
                     default:
-                        {
-                            result.IsError = true;
-                            result.Value = "电子秤类型错误，请重新配置！";
-                            return result;
-                        }
+                        return "秤配置错误";
                 }
             }
-            catch (Exception ex)
+            catch(Exception ex)
             {
-                result.IsError = true;
-                result.Value = "电子秤连接失败，请确认电脑是否与电子秤正确连接！" + ex.Message;
-                return result;
-            }
-            finally
-            {
-                if (comPort.IsOpen)
-                {
-                    comPort.Close();
-                }
+                throw ex;
             }
         }
 
