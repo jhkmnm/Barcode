@@ -101,5 +101,10 @@ namespace Barcode
             User.SessionID = userresult.Data.SessionID;
             this.DialogResult = DialogResult.OK;
         }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.No;
+        }
     }
 }

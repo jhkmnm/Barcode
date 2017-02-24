@@ -34,6 +34,7 @@ namespace Barcode
 
         public Form1()
         {
+            this.WindowState = FormWindowState.Maximized;
             InitializeComponent();
             LoadChooser();
             InitDDL();
@@ -130,9 +131,7 @@ namespace Barcode
             try
             {
                 rpt.SetDataSource(dt);
-                rpt.PrintToPrinter(1, true, 0, 0);
-                //rpt.Close();
-                //rpt.Dispose();
+                rpt.PrintToPrinter(1, true, 0, 0);                
                 //MessageBox.Show("打印完成");
                 return true;
             }
@@ -168,7 +167,7 @@ namespace Barcode
             newrow["CustName"] = CurrentData.CName;
             newrow["ProductName"] = CurrentData.Name;
             newrow["Unit"] = CurrentData.Unit;
-            newrow["Weight"] = CurrentData.Unit == "斤" ? (Convert.ToDecimal(weight) * 2).ToString() : weight ;
+            newrow["Weight"] = CurrentData.Unit == "斤" ? weight : (Convert.ToDecimal(weight) / 2).ToString();
             printdata.Rows.Add(newrow);
             return Print(printdata);
         }
@@ -195,6 +194,7 @@ namespace Barcode
         private void On()
         {
             on_off = false;
+            ma.Set();
         }
         /// <summary>
         /// 停止读秤
@@ -206,63 +206,75 @@ namespace Barcode
 
         private void GetWeight()
         {
-            if (stop)
-                return;
-            if (on_off)
+            while (true)
             {
-                ma = new ManualResetEvent(false);
-                ma.WaitOne();
-            }
-            var weight = port.ProductWeight();
-            this.Invoke(new Action(() =>
-            {
-                txtWeight_1.Text = ExtractWeight(weight);
-            }));
+                if (stop)
+                    return;
+                if (on_off)
+                {
+                    ma = new ManualResetEvent(false);
+                    ma.WaitOne();
+                }
+                var weight = port.ProductWeight();
+                if (!string.IsNullOrWhiteSpace(weight))
+                {
+                    try
+                    {
+                        Invoke(new Action(() =>
+                        {
+                            txtWeight_1.Text = ExtractWeight(weight);
+                            //textBox1.Text += ExtractWeight(weight) + Environment.NewLine;
+                        }));
+                    }
+                    catch { }
+                }
 
-            Thread.Sleep(100);
+                Thread.Sleep(1500);
+            }            
         }
 
         private string ExtractWeight(string str)
         {
             var weights = str.Split('\r');
-            string def = "";
-            int count = 0;
+            string weight = "";
+            Regex reg = new Regex(@"\d+\.?\d*");
+            
+            for(int i= weights.Length-1;i>=0;i--)
+            {
+                if (!string.IsNullOrWhiteSpace(weights[i]))
+                {
+                    var match = reg.Match(weights[i]);
+                    weight = match.Value;
+                }
+            }
 
-            return weights[weights.Length - 1];
-
-            //foreach (string weight in weights)
-            //{
-            //    if (weight != def)
-            //    {
-            //        count = 0;
-            //    }
-            //    else if (weight.EndsWith("R"))
-            //    {
-            //        count++;
-            //    }
-            //    def = weight;
-
-            //    if (count == mateCount)
-            //    {
-            //        break;
-            //    }
-            //}
-
-            //return count == mateCount ? def.TrimEnd('R') : "error";
+            return (Convert.ToDecimal(weight) * 2).ToString();            
         }
 
         private void btnTest_Click(object sender, EventArgs e)
         {
-            if (port.initComPort(ddlProt.Text))
+            if (btnTest.Text == "停止")
             {
-                if (MessageBox.Show("秤连接成功，是否开始秤重", "提示", MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.OK)
-                {
-                    GetWeightRun();
-                }
+                stop = true;
+                btnTest.Text = "测试商品";
+                port.ClosePort();
             }
             else
             {
-                MessageBox.Show("端口初始化失败，请确认！");
+                if (port.initComPort(ddlProt.Text))
+                {
+                    if (MessageBox.Show("秤连接成功，是否开始秤重", "提示", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    {
+                        stop = false;
+                        on_off = false;
+                        GetWeightRun();
+                        btnTest.Text = "停止";
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("端口初始化失败，请确认！");
+                }
             }
         }
         #endregion
@@ -281,6 +293,10 @@ namespace Barcode
                 {
                     chooseDataBindingSource.DataSource = value;
                     dgvData.Refresh();
+                    foreach(DataGridViewRow row in dgvData.SelectedRows)
+                    {
+                        row.Selected = false;
+                    }                    
                     dgvData.Rows[0].Selected = true;
                 }
             }
@@ -327,11 +343,11 @@ namespace Barcode
             {
                 if (Print(weight))
                 {
-                    var current = CurrentData;
-                    var postdata = string.Format("token={0}&sessionId={1}&num={2}&id={3}", token, User.SessionID, weight, current.ID);
+                    CurrentData.Weight = weight;
+                    var postdata = string.Format("token={0}&sessionId={1}&num={2}&id={3}", token, User.SessionID, weight, CurrentData.ID);
                     var htmlstr = Html.Post(str_api + str_SaveAndPrint, postdata);
                     var result = JsonConvert.DeserializeObject<Result>(htmlstr);
-
+                    dgvData.Refresh();
                     dv.Check(result.Status == "40000", result.Message);
                 }
                 else
@@ -354,12 +370,24 @@ namespace Barcode
                 Off();
                 if(SaveWeight())
                 {
+                    dgvData.Rows[e.RowIndex].Selected = false;
                     dgvData.Rows[e.RowIndex + 1].Selected = true;
                     txtWeight_2.Text = "";
                 }
+                On();
             }
         }
         #endregion
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            stop = true;
+            if (rpt != null)
+            {
+                rpt.Close();
+                rpt.Dispose();
+            }
+        }
     }
 
     #region 实体

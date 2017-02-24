@@ -120,6 +120,12 @@ namespace Barcode
             }
         }
 
+        public void ClosePort()
+        {
+            if (comPort.IsOpen)
+                comPort.Close();
+        }
+
         /// <summary>
         /// 读取电子秤的配置信息
         /// </summary>
