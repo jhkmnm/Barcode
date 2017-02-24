@@ -28,16 +28,35 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.listBox1 = new System.Windows.Forms.ListBox();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.listBox2 = new System.Windows.Forms.ListBox();
+            this.components = new System.ComponentModel.Container();
             this.dgvData = new System.Windows.Forms.DataGridView();
+            this.colID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.coloID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colsendDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colcName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colname = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colunit = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colchooseOrder = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colkNum = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colnum = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colremark = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Weight = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colAction = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.colpID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colisAssign = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colisOwegoods = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colisWrong = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colprice = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colrealNum = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colorderDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colu_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.coluid = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colsendOrder = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colchooserID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.chooseDataBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.ddlChooser = new System.Windows.Forms.ComboBox();
-            this.txtTop = new System.Windows.Forms.TextBox();
-            this.txtDown = new System.Windows.Forms.TextBox();
+            this.txtTop = new Utilities.UserControls.TextIntegerOnly();
+            this.txtDown = new Utilities.UserControls.TextIntegerOnly();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -51,85 +70,226 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnSearch = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.ddlPrinter = new System.Windows.Forms.ComboBox();
-            this.ddlProt = new System.Windows.Forms.ComboBox();
-            this.label8 = new System.Windows.Forms.Label();
+            this.txtWeight_2 = new Utilities.UserControls.TextIntegerOnly();
+            this.label11 = new System.Windows.Forms.Label();
+            this.txtWeight_1 = new Utilities.UserControls.TextIntegerOnly();
+            this.label10 = new System.Windows.Forms.Label();
+            this.btnTest = new System.Windows.Forms.Button();
             this.ddlPageSize = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.btnTest = new System.Windows.Forms.Button();
-            this.txtWeight_1 = new System.Windows.Forms.TextBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.txtWeight_2 = new System.Windows.Forms.TextBox();
-            this.label11 = new System.Windows.Forms.Label();
+            this.ddlProt = new System.Windows.Forms.ComboBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.ddlPrinter = new System.Windows.Forms.ComboBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.ucPagerEx1 = new Aide.UcPagerEx();
             ((System.ComponentModel.ISupportInitialize)(this.dgvData)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chooseDataBindingSource)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(191, 508);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(273, 537);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(491, 21);
-            this.textBox2.TabIndex = 2;
-            // 
-            // listBox1
-            // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 12;
-            this.listBox1.Location = new System.Drawing.Point(50, 564);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(274, 52);
-            this.listBox1.TabIndex = 3;
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(399, 508);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 4;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(505, 508);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 5;
-            this.button3.Text = "button3";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
-            // 
-            // listBox2
-            // 
-            this.listBox2.FormattingEnabled = true;
-            this.listBox2.ItemHeight = 12;
-            this.listBox2.Location = new System.Drawing.Point(330, 564);
-            this.listBox2.Name = "listBox2";
-            this.listBox2.Size = new System.Drawing.Size(274, 52);
-            this.listBox2.TabIndex = 6;
-            // 
             // dgvData
             // 
+            this.dgvData.AllowUserToAddRows = false;
+            this.dgvData.AllowUserToDeleteRows = false;
+            this.dgvData.AutoGenerateColumns = false;
             this.dgvData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvData.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.colID,
+            this.coloID,
+            this.colsendDate,
+            this.colcName,
+            this.colname,
+            this.colunit,
+            this.colchooseOrder,
+            this.colkNum,
+            this.colnum,
+            this.colremark,
+            this.Weight,
+            this.colAction,
+            this.colpID,
+            this.colisAssign,
+            this.colisOwegoods,
+            this.colisWrong,
+            this.colprice,
+            this.colrealNum,
+            this.colorderDate,
+            this.colu_ID,
+            this.coluid,
+            this.colsendOrder,
+            this.colchooserID});
+            this.dgvData.DataSource = this.chooseDataBindingSource;
             this.dgvData.Location = new System.Drawing.Point(6, 202);
             this.dgvData.Name = "dgvData";
             this.dgvData.RowTemplate.Height = 23;
-            this.dgvData.Size = new System.Drawing.Size(825, 150);
+            this.dgvData.Size = new System.Drawing.Size(825, 363);
             this.dgvData.TabIndex = 7;
+            this.dgvData.CellContentClick += dgvData_CellContentClick;            
+            // 
+            // colID
+            // 
+            this.colID.DataPropertyName = "ID";
+            this.colID.HeaderText = "ID";
+            this.colID.Name = "colID";
+            this.colID.Visible = false;
+            // 
+            // coloID
+            // 
+            this.coloID.DataPropertyName = "O_ID";
+            this.coloID.HeaderText = "订单号";
+            this.coloID.Name = "coloID";
+            this.coloID.Width = 80;
+            // 
+            // colsendDate
+            // 
+            this.colsendDate.DataPropertyName = "Send_Date";
+            this.colsendDate.HeaderText = "配送顺序";
+            this.colsendDate.Name = "colsendDate";
+            this.colsendDate.Width = 90;
+            // 
+            // colcName
+            // 
+            this.colcName.DataPropertyName = "CName";
+            this.colcName.HeaderText = "客户名称";
+            this.colcName.Name = "colcName";
+            this.colcName.Width = 140;
+            // 
+            // colname
+            // 
+            this.colname.DataPropertyName = "Name";
+            this.colname.HeaderText = "商品名称";
+            this.colname.Name = "colname";
+            this.colname.Width = 140;
+            // 
+            // colunit
+            // 
+            this.colunit.DataPropertyName = "Unit";
+            this.colunit.HeaderText = "单位";
+            this.colunit.Name = "colunit";
+            this.colunit.Width = 60;
+            // 
+            // colchooseOrder
+            // 
+            this.colchooseOrder.DataPropertyName = "Choose_Order";
+            this.colchooseOrder.HeaderText = "存放位置";
+            this.colchooseOrder.Name = "colchooseOrder";
+            this.colchooseOrder.Width = 80;
+            // 
+            // colkNum
+            // 
+            this.colkNum.DataPropertyName = "K_Num";
+            this.colkNum.HeaderText = "库存";
+            this.colkNum.Name = "colkNum";
+            this.colkNum.Width = 60;
+            // 
+            // colnum
+            // 
+            this.colnum.DataPropertyName = "Num";
+            this.colnum.HeaderText = "数量";
+            this.colnum.Name = "colnum";
+            this.colnum.Width = 60;
+            // 
+            // colremark
+            // 
+            this.colremark.DataPropertyName = "Remark";
+            this.colremark.HeaderText = "要求";
+            this.colremark.Name = "colremark";
+            this.colremark.Width = 120;
+            // 
+            // Weight
+            // 
+            this.Weight.DataPropertyName = "Weight";
+            this.Weight.HeaderText = "重量";
+            this.Weight.Name = "Weight";
+            // 
+            // colAction
+            // 
+            this.colAction.DataPropertyName = "Action";
+            this.colAction.HeaderText = "操作";
+            this.colAction.Name = "colAction";
+            this.colAction.ReadOnly = true;
+            this.colAction.Text = "保存打印";
+            // 
+            // colpID
+            // 
+            this.colpID.DataPropertyName = "P_ID";
+            this.colpID.HeaderText = "P_ID";
+            this.colpID.Name = "colpID";
+            this.colpID.Visible = false;
+            // 
+            // colisAssign
+            // 
+            this.colisAssign.DataPropertyName = "Is_Assign";
+            this.colisAssign.HeaderText = "Is_Assign";
+            this.colisAssign.Name = "colisAssign";
+            this.colisAssign.Visible = false;
+            // 
+            // colisOwegoods
+            // 
+            this.colisOwegoods.DataPropertyName = "Is_Owegoods";
+            this.colisOwegoods.HeaderText = "Is_Owegoods";
+            this.colisOwegoods.Name = "colisOwegoods";
+            this.colisOwegoods.Visible = false;
+            // 
+            // colisWrong
+            // 
+            this.colisWrong.DataPropertyName = "Is_Wrong";
+            this.colisWrong.HeaderText = "Is_Wrong";
+            this.colisWrong.Name = "colisWrong";
+            this.colisWrong.Visible = false;
+            // 
+            // colprice
+            // 
+            this.colprice.DataPropertyName = "Price";
+            this.colprice.HeaderText = "Price";
+            this.colprice.Name = "colprice";
+            this.colprice.Visible = false;
+            // 
+            // colrealNum
+            // 
+            this.colrealNum.DataPropertyName = "Real_Num";
+            this.colrealNum.HeaderText = "Real_Num";
+            this.colrealNum.Name = "colrealNum";
+            this.colrealNum.Visible = false;
+            // 
+            // colorderDate
+            // 
+            this.colorderDate.DataPropertyName = "Order_Date";
+            this.colorderDate.HeaderText = "Order_Date";
+            this.colorderDate.Name = "colorderDate";
+            this.colorderDate.Visible = false;
+            // 
+            // colu_ID
+            // 
+            this.colu_ID.DataPropertyName = "U_ID";
+            this.colu_ID.HeaderText = "U_ID";
+            this.colu_ID.Name = "colu_ID";
+            this.colu_ID.Visible = false;
+            // 
+            // coluid
+            // 
+            this.coluid.DataPropertyName = "Uid";
+            this.coluid.HeaderText = "Uid";
+            this.coluid.Name = "coluid";
+            this.coluid.Visible = false;
+            // 
+            // colsendOrder
+            // 
+            this.colsendOrder.DataPropertyName = "Send_Order";
+            this.colsendOrder.HeaderText = "Send_Order";
+            this.colsendOrder.Name = "colsendOrder";
+            this.colsendOrder.Visible = false;
+            // 
+            // colchooserID
+            // 
+            this.colchooserID.DataPropertyName = "Chooser_ID";
+            this.colchooserID.HeaderText = "Chooser_ID";
+            this.colchooserID.Name = "colchooserID";
+            this.colchooserID.Visible = false;
+            // 
+            // chooseDataBindingSource
+            // 
+            this.chooseDataBindingSource.DataSource = typeof(Barcode.ChooseData);
             // 
             // ddlChooser
             // 
@@ -142,6 +302,8 @@
             // 
             // txtTop
             // 
+            this.txtTop.IsDecimal = false;
+            this.txtTop.IsNegativeNumbers = false;
             this.txtTop.Location = new System.Drawing.Point(331, 21);
             this.txtTop.Name = "txtTop";
             this.txtTop.Size = new System.Drawing.Size(69, 21);
@@ -149,6 +311,8 @@
             // 
             // txtDown
             // 
+            this.txtDown.IsDecimal = false;
+            this.txtDown.IsNegativeNumbers = false;
             this.txtDown.Location = new System.Drawing.Point(408, 21);
             this.txtDown.Name = "txtDown";
             this.txtDown.Size = new System.Drawing.Size(69, 21);
@@ -183,10 +347,12 @@
             // 
             // dtpSendDate
             // 
+            this.dtpSendDate.Checked = false;
             this.dtpSendDate.CustomFormat = "yyyy-MM-dd";
             this.dtpSendDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpSendDate.Location = new System.Drawing.Point(590, 21);
             this.dtpSendDate.Name = "dtpSendDate";
+            this.dtpSendDate.ShowCheckBox = true;
             this.dtpSendDate.Size = new System.Drawing.Size(102, 21);
             this.dtpSendDate.TabIndex = 14;
             // 
@@ -275,6 +441,7 @@
             this.btnSearch.TabIndex = 21;
             this.btnSearch.Text = "查询";
             this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // groupBox2
             // 
@@ -296,41 +463,51 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "打印";
             // 
-            // label7
+            // txtWeight_2
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(36, 28);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(47, 12);
-            this.label7.TabIndex = 22;
-            this.label7.Text = "打印机:";
+            this.txtWeight_2.IsDecimal = true;
+            this.txtWeight_2.IsNegativeNumbers = false;
+            this.txtWeight_2.Location = new System.Drawing.Point(553, 60);
+            this.txtWeight_2.Name = "txtWeight_2";
+            this.txtWeight_2.Size = new System.Drawing.Size(69, 21);
+            this.txtWeight_2.TabIndex = 27;
             // 
-            // ddlPrinter
+            // label11
             // 
-            this.ddlPrinter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.ddlPrinter.FormattingEnabled = true;
-            this.ddlPrinter.Location = new System.Drawing.Point(89, 24);
-            this.ddlPrinter.Name = "ddlPrinter";
-            this.ddlPrinter.Size = new System.Drawing.Size(206, 20);
-            this.ddlPrinter.TabIndex = 22;
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(488, 64);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(59, 12);
+            this.label11.TabIndex = 28;
+            this.label11.Text = "手动数值:";
             // 
-            // ddlProt
+            // txtWeight_1
             // 
-            this.ddlProt.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.ddlProt.FormattingEnabled = true;
-            this.ddlProt.Location = new System.Drawing.Point(89, 60);
-            this.ddlProt.Name = "ddlProt";
-            this.ddlProt.Size = new System.Drawing.Size(99, 20);
-            this.ddlProt.TabIndex = 23;
+            this.txtWeight_1.IsDecimal = true;
+            this.txtWeight_1.IsNegativeNumbers = false;
+            this.txtWeight_1.Location = new System.Drawing.Point(387, 60);
+            this.txtWeight_1.Name = "txtWeight_1";
+            this.txtWeight_1.Size = new System.Drawing.Size(69, 21);
+            this.txtWeight_1.TabIndex = 22;
             // 
-            // label8
+            // label10
             // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(12, 64);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(71, 12);
-            this.label8.TabIndex = 24;
-            this.label8.Text = "电子秤串口:";
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(322, 64);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(59, 12);
+            this.label10.TabIndex = 23;
+            this.label10.Text = "实时数值:";
+            // 
+            // btnTest
+            // 
+            this.btnTest.Location = new System.Drawing.Point(220, 59);
+            this.btnTest.Name = "btnTest";
+            this.btnTest.Size = new System.Drawing.Size(75, 23);
+            this.btnTest.TabIndex = 23;
+            this.btnTest.Text = "测试端口";
+            this.btnTest.UseVisualStyleBackColor = true;
+            this.btnTest.Click += new System.EventHandler(this.btnTest_Click);
             // 
             // ddlPageSize
             // 
@@ -350,85 +527,78 @@
             this.label9.TabIndex = 26;
             this.label9.Text = "纸张:";
             // 
-            // btnTest
+            // ddlProt
             // 
-            this.btnTest.Location = new System.Drawing.Point(220, 59);
-            this.btnTest.Name = "btnTest";
-            this.btnTest.Size = new System.Drawing.Size(75, 23);
-            this.btnTest.TabIndex = 23;
-            this.btnTest.Text = "测试端口";
-            this.btnTest.UseVisualStyleBackColor = true;
+            this.ddlProt.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ddlProt.FormattingEnabled = true;
+            this.ddlProt.Location = new System.Drawing.Point(89, 60);
+            this.ddlProt.Name = "ddlProt";
+            this.ddlProt.Size = new System.Drawing.Size(99, 20);
+            this.ddlProt.TabIndex = 23;
             // 
-            // txtWeight_1
+            // label8
             // 
-            this.txtWeight_1.Location = new System.Drawing.Point(387, 60);
-            this.txtWeight_1.Name = "txtWeight_1";
-            this.txtWeight_1.Size = new System.Drawing.Size(69, 21);
-            this.txtWeight_1.TabIndex = 22;
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(12, 64);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(71, 12);
+            this.label8.TabIndex = 24;
+            this.label8.Text = "电子秤串口:";
             // 
-            // label10
+            // ddlPrinter
             // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(322, 64);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(59, 12);
-            this.label10.TabIndex = 23;
-            this.label10.Text = "实时数值:";
+            this.ddlPrinter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ddlPrinter.FormattingEnabled = true;
+            this.ddlPrinter.Location = new System.Drawing.Point(89, 24);
+            this.ddlPrinter.Name = "ddlPrinter";
+            this.ddlPrinter.Size = new System.Drawing.Size(206, 20);
+            this.ddlPrinter.TabIndex = 22;
             // 
-            // txtWeight_2
+            // label7
             // 
-            this.txtWeight_2.Location = new System.Drawing.Point(553, 60);
-            this.txtWeight_2.Name = "txtWeight_2";
-            this.txtWeight_2.Size = new System.Drawing.Size(69, 21);
-            this.txtWeight_2.TabIndex = 27;
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(36, 28);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(47, 12);
+            this.label7.TabIndex = 22;
+            this.label7.Text = "打印机:";
             // 
-            // label11
+            // ucPagerEx1
             // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(488, 64);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(59, 12);
-            this.label11.TabIndex = 28;
-            this.label11.Text = "手动数值:";
+            this.ucPagerEx1.Location = new System.Drawing.Point(125, 571);
+            this.ucPagerEx1.Name = "ucPagerEx1";
+            this.ucPagerEx1.PageIndex = 1;
+            this.ucPagerEx1.PreviousPage = 0;
+            this.ucPagerEx1.RecordCount = 0;
+            this.ucPagerEx1.Size = new System.Drawing.Size(417, 38);
+            this.ucPagerEx1.TabIndex = 23;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(925, 621);
+            this.ClientSize = new System.Drawing.Size(840, 621);
+            this.Controls.Add(this.ucPagerEx1);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.dgvData);
-            this.Controls.Add(this.listBox2);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.listBox1);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.button1);
             this.Name = "Form1";
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.dgvData)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chooseDataBindingSource)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
-
         }
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.ListBox listBox1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.ListBox listBox2;
         private System.Windows.Forms.DataGridView dgvData;
         private System.Windows.Forms.ComboBox ddlChooser;
-        private System.Windows.Forms.TextBox txtTop;
-        private System.Windows.Forms.TextBox txtDown;
+        private Utilities.UserControls.TextIntegerOnly txtTop;
+        private Utilities.UserControls.TextIntegerOnly txtDown;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
@@ -442,9 +612,9 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.TextBox txtWeight_2;
+        private Utilities.UserControls.TextIntegerOnly txtWeight_2;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.TextBox txtWeight_1;
+        private Utilities.UserControls.TextIntegerOnly txtWeight_1;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Button btnTest;
         private System.Windows.Forms.ComboBox ddlPageSize;
@@ -453,6 +623,32 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.ComboBox ddlPrinter;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.BindingSource chooseDataBindingSource;
+        private Aide.UcPagerEx ucPagerEx1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn coloID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colsendDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colcName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colname;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colunit;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colchooseOrder;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colkNum;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colnum;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colremark;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colWeight;
+        private System.Windows.Forms.DataGridViewButtonColumn colAction;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colpID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colisAssign;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colisOwegoods;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colisWrong;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colprice;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colrealNum;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colorderDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colu_ID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn coluid;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colsendOrder;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colchooserID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Weight;
     }
 }
 
