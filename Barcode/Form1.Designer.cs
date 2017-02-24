@@ -30,36 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             this.dgvData = new System.Windows.Forms.DataGridView();
-            this.ddlChooser = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.dtpSendDate = new System.Windows.Forms.DateTimePicker();
-            this.label4 = new System.Windows.Forms.Label();
-            this.ddlIsAssign = new System.Windows.Forms.ComboBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.ddlIswrong = new System.Windows.Forms.ComboBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.ddlIsowegoods = new System.Windows.Forms.ComboBox();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.btnSearch = new System.Windows.Forms.Button();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.btnTest = new System.Windows.Forms.Button();
-            this.ddlPageSize = new System.Windows.Forms.ComboBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.ddlProt = new System.Windows.Forms.ComboBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.ddlPrinter = new System.Windows.Forms.ComboBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.txtWeight_2 = new Utilities.UserControls.TextIntegerOnly();
-            this.txtWeight_1 = new Utilities.UserControls.TextIntegerOnly();
-            this.txtTop = new Utilities.UserControls.TextIntegerOnly();
-            this.txtDown = new Utilities.UserControls.TextIntegerOnly();
-            this.ucPagerEx1 = new Utilities.UserControls.UcPagerEx();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
             this.colID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.coloID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colsendOrder = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -84,10 +54,40 @@
             this.coluid = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colchooserID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.chooseDataBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.ddlChooser = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.dtpSendDate = new System.Windows.Forms.DateTimePicker();
+            this.label4 = new System.Windows.Forms.Label();
+            this.ddlIsAssign = new System.Windows.Forms.ComboBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.ddlIswrong = new System.Windows.Forms.ComboBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.ddlIsowegoods = new System.Windows.Forms.ComboBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnSearch = new System.Windows.Forms.Button();
+            this.txtTop = new Utilities.UserControls.TextIntegerOnly();
+            this.txtDown = new Utilities.UserControls.TextIntegerOnly();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.txtWeight_2 = new Utilities.UserControls.TextIntegerOnly();
+            this.label11 = new System.Windows.Forms.Label();
+            this.txtWeight_1 = new Utilities.UserControls.TextIntegerOnly();
+            this.label10 = new System.Windows.Forms.Label();
+            this.btnTest = new System.Windows.Forms.Button();
+            this.ddlPageSize = new System.Windows.Forms.ComboBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.ddlProt = new System.Windows.Forms.ComboBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.ddlPrinter = new System.Windows.Forms.ComboBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.ucPagerEx1 = new Utilities.UserControls.UcPagerEx();
             ((System.ComponentModel.ISupportInitialize)(this.dgvData)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chooseDataBindingSource)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.chooseDataBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // dgvData
@@ -132,314 +132,6 @@
             this.dgvData.Size = new System.Drawing.Size(825, 380);
             this.dgvData.TabIndex = 7;
             this.dgvData.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvData_CellContentClick);
-            // 
-            // ddlChooser
-            // 
-            this.ddlChooser.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.ddlChooser.FormattingEnabled = true;
-            this.ddlChooser.Location = new System.Drawing.Point(78, 20);
-            this.ddlChooser.Name = "ddlChooser";
-            this.ddlChooser.Size = new System.Drawing.Size(121, 20);
-            this.ddlChooser.TabIndex = 8;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(25, 24);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(47, 12);
-            this.label1.TabIndex = 11;
-            this.label1.Text = "分拣员:";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(242, 26);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(83, 12);
-            this.label2.TabIndex = 12;
-            this.label2.Text = "配送顺序范围:";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(525, 26);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(59, 12);
-            this.label3.TabIndex = 13;
-            this.label3.Text = "送货日期:";
-            // 
-            // dtpSendDate
-            // 
-            this.dtpSendDate.Checked = false;
-            this.dtpSendDate.CustomFormat = "yyyy-MM-dd";
-            this.dtpSendDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpSendDate.Location = new System.Drawing.Point(590, 21);
-            this.dtpSendDate.Name = "dtpSendDate";
-            this.dtpSendDate.ShowCheckBox = true;
-            this.dtpSendDate.Size = new System.Drawing.Size(102, 21);
-            this.dtpSendDate.TabIndex = 14;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(13, 58);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(59, 12);
-            this.label4.TabIndex = 16;
-            this.label4.Text = "是否已分:";
-            // 
-            // ddlIsAssign
-            // 
-            this.ddlIsAssign.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.ddlIsAssign.FormattingEnabled = true;
-            this.ddlIsAssign.Location = new System.Drawing.Point(78, 54);
-            this.ddlIsAssign.Name = "ddlIsAssign";
-            this.ddlIsAssign.Size = new System.Drawing.Size(121, 20);
-            this.ddlIsAssign.TabIndex = 15;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(265, 59);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(59, 12);
-            this.label5.TabIndex = 18;
-            this.label5.Text = "是否保存:";
-            // 
-            // ddlIswrong
-            // 
-            this.ddlIswrong.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.ddlIswrong.FormattingEnabled = true;
-            this.ddlIswrong.Location = new System.Drawing.Point(330, 55);
-            this.ddlIswrong.Name = "ddlIswrong";
-            this.ddlIswrong.Size = new System.Drawing.Size(121, 20);
-            this.ddlIswrong.TabIndex = 17;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(525, 58);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(59, 12);
-            this.label6.TabIndex = 20;
-            this.label6.Text = "是否欠货:";
-            // 
-            // ddlIsowegoods
-            // 
-            this.ddlIsowegoods.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.ddlIsowegoods.FormattingEnabled = true;
-            this.ddlIsowegoods.Location = new System.Drawing.Point(590, 54);
-            this.ddlIsowegoods.Name = "ddlIsowegoods";
-            this.ddlIsowegoods.Size = new System.Drawing.Size(102, 20);
-            this.ddlIsowegoods.TabIndex = 19;
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox1.Controls.Add(this.btnSearch);
-            this.groupBox1.Controls.Add(this.ddlChooser);
-            this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Controls.Add(this.txtTop);
-            this.groupBox1.Controls.Add(this.ddlIsowegoods);
-            this.groupBox1.Controls.Add(this.txtDown);
-            this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.ddlIswrong);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.ddlIsAssign);
-            this.groupBox1.Controls.Add(this.dtpSendDate);
-            this.groupBox1.Location = new System.Drawing.Point(6, 2);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(825, 87);
-            this.groupBox1.TabIndex = 21;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "查询";
-            // 
-            // btnSearch
-            // 
-            this.btnSearch.Location = new System.Drawing.Point(722, 26);
-            this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(75, 39);
-            this.btnSearch.TabIndex = 21;
-            this.btnSearch.Text = "查询";
-            this.btnSearch.UseVisualStyleBackColor = true;
-            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox2.Controls.Add(this.label13);
-            this.groupBox2.Controls.Add(this.label12);
-            this.groupBox2.Controls.Add(this.txtWeight_2);
-            this.groupBox2.Controls.Add(this.label11);
-            this.groupBox2.Controls.Add(this.txtWeight_1);
-            this.groupBox2.Controls.Add(this.label10);
-            this.groupBox2.Controls.Add(this.btnTest);
-            this.groupBox2.Controls.Add(this.ddlPageSize);
-            this.groupBox2.Controls.Add(this.label9);
-            this.groupBox2.Controls.Add(this.ddlProt);
-            this.groupBox2.Controls.Add(this.label8);
-            this.groupBox2.Controls.Add(this.ddlPrinter);
-            this.groupBox2.Controls.Add(this.label7);
-            this.groupBox2.Location = new System.Drawing.Point(6, 89);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(825, 100);
-            this.groupBox2.TabIndex = 22;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "打印";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(509, 65);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(59, 12);
-            this.label11.TabIndex = 28;
-            this.label11.Text = "手动数值:";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(322, 65);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(59, 12);
-            this.label10.TabIndex = 23;
-            this.label10.Text = "实时数值:";
-            // 
-            // btnTest
-            // 
-            this.btnTest.Location = new System.Drawing.Point(220, 60);
-            this.btnTest.Name = "btnTest";
-            this.btnTest.Size = new System.Drawing.Size(75, 23);
-            this.btnTest.TabIndex = 23;
-            this.btnTest.Text = "测试端口";
-            this.btnTest.UseVisualStyleBackColor = true;
-            this.btnTest.Click += new System.EventHandler(this.btnTest_Click);
-            // 
-            // ddlPageSize
-            // 
-            this.ddlPageSize.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.ddlPageSize.FormattingEnabled = true;
-            this.ddlPageSize.Location = new System.Drawing.Point(387, 24);
-            this.ddlPageSize.Name = "ddlPageSize";
-            this.ddlPageSize.Size = new System.Drawing.Size(99, 20);
-            this.ddlPageSize.TabIndex = 25;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(346, 28);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(35, 12);
-            this.label9.TabIndex = 26;
-            this.label9.Text = "纸张:";
-            // 
-            // ddlProt
-            // 
-            this.ddlProt.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.ddlProt.FormattingEnabled = true;
-            this.ddlProt.Location = new System.Drawing.Point(89, 61);
-            this.ddlProt.Name = "ddlProt";
-            this.ddlProt.Size = new System.Drawing.Size(99, 20);
-            this.ddlProt.TabIndex = 23;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(12, 65);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(71, 12);
-            this.label8.TabIndex = 24;
-            this.label8.Text = "电子秤串口:";
-            // 
-            // ddlPrinter
-            // 
-            this.ddlPrinter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.ddlPrinter.FormattingEnabled = true;
-            this.ddlPrinter.Location = new System.Drawing.Point(89, 24);
-            this.ddlPrinter.Name = "ddlPrinter";
-            this.ddlPrinter.Size = new System.Drawing.Size(206, 20);
-            this.ddlPrinter.TabIndex = 22;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(36, 28);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(47, 12);
-            this.label7.TabIndex = 22;
-            this.label7.Text = "打印机:";
-            // 
-            // txtWeight_2
-            // 
-            this.txtWeight_2.IsDecimal = true;
-            this.txtWeight_2.IsNegativeNumbers = false;
-            this.txtWeight_2.Location = new System.Drawing.Point(574, 61);
-            this.txtWeight_2.Name = "txtWeight_2";
-            this.txtWeight_2.Size = new System.Drawing.Size(69, 21);
-            this.txtWeight_2.TabIndex = 27;
-            // 
-            // txtWeight_1
-            // 
-            this.txtWeight_1.IsDecimal = true;
-            this.txtWeight_1.IsNegativeNumbers = false;
-            this.txtWeight_1.Location = new System.Drawing.Point(387, 61);
-            this.txtWeight_1.Name = "txtWeight_1";
-            this.txtWeight_1.Size = new System.Drawing.Size(69, 21);
-            this.txtWeight_1.TabIndex = 22;
-            // 
-            // txtTop
-            // 
-            this.txtTop.IsDecimal = false;
-            this.txtTop.IsNegativeNumbers = false;
-            this.txtTop.Location = new System.Drawing.Point(331, 21);
-            this.txtTop.Name = "txtTop";
-            this.txtTop.Size = new System.Drawing.Size(69, 21);
-            this.txtTop.TabIndex = 9;
-            // 
-            // txtDown
-            // 
-            this.txtDown.IsDecimal = false;
-            this.txtDown.IsNegativeNumbers = false;
-            this.txtDown.Location = new System.Drawing.Point(408, 21);
-            this.txtDown.Name = "txtDown";
-            this.txtDown.Size = new System.Drawing.Size(69, 21);
-            this.txtDown.TabIndex = 10;
-            // 
-            // ucPagerEx1
-            // 
-            this.ucPagerEx1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.ucPagerEx1.Location = new System.Drawing.Point(211, 588);
-            this.ucPagerEx1.Name = "ucPagerEx1";
-            this.ucPagerEx1.PageIndex = 1;
-            this.ucPagerEx1.PageSize = 15;
-            this.ucPagerEx1.PreviousPage = 0;
-            this.ucPagerEx1.RecordCount = 0;
-            this.ucPagerEx1.Size = new System.Drawing.Size(417, 30);
-            this.ucPagerEx1.TabIndex = 23;
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(458, 65);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(17, 12);
-            this.label12.TabIndex = 29;
-            this.label12.Text = "斤";
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(645, 65);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(17, 12);
-            this.label13.TabIndex = 30;
-            this.label13.Text = "斤";
             // 
             // colID
             // 
@@ -607,6 +299,315 @@
             // 
             this.chooseDataBindingSource.DataSource = typeof(Barcode.ChooseData);
             // 
+            // ddlChooser
+            // 
+            this.ddlChooser.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ddlChooser.FormattingEnabled = true;
+            this.ddlChooser.Location = new System.Drawing.Point(78, 20);
+            this.ddlChooser.Name = "ddlChooser";
+            this.ddlChooser.Size = new System.Drawing.Size(121, 20);
+            this.ddlChooser.TabIndex = 8;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(25, 24);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(47, 12);
+            this.label1.TabIndex = 11;
+            this.label1.Text = "分拣员:";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(242, 26);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(83, 12);
+            this.label2.TabIndex = 12;
+            this.label2.Text = "配送顺序范围:";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(525, 26);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(59, 12);
+            this.label3.TabIndex = 13;
+            this.label3.Text = "送货日期:";
+            // 
+            // dtpSendDate
+            // 
+            this.dtpSendDate.Checked = false;
+            this.dtpSendDate.CustomFormat = "yyyy-MM-dd";
+            this.dtpSendDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpSendDate.Location = new System.Drawing.Point(590, 21);
+            this.dtpSendDate.Name = "dtpSendDate";
+            this.dtpSendDate.ShowCheckBox = true;
+            this.dtpSendDate.Size = new System.Drawing.Size(102, 21);
+            this.dtpSendDate.TabIndex = 14;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(13, 58);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(59, 12);
+            this.label4.TabIndex = 16;
+            this.label4.Text = "是否已分:";
+            // 
+            // ddlIsAssign
+            // 
+            this.ddlIsAssign.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ddlIsAssign.FormattingEnabled = true;
+            this.ddlIsAssign.Location = new System.Drawing.Point(78, 54);
+            this.ddlIsAssign.Name = "ddlIsAssign";
+            this.ddlIsAssign.Size = new System.Drawing.Size(121, 20);
+            this.ddlIsAssign.TabIndex = 15;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(265, 59);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(59, 12);
+            this.label5.TabIndex = 18;
+            this.label5.Text = "是否保存:";
+            // 
+            // ddlIswrong
+            // 
+            this.ddlIswrong.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ddlIswrong.FormattingEnabled = true;
+            this.ddlIswrong.Location = new System.Drawing.Point(330, 55);
+            this.ddlIswrong.Name = "ddlIswrong";
+            this.ddlIswrong.Size = new System.Drawing.Size(121, 20);
+            this.ddlIswrong.TabIndex = 17;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(525, 58);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(59, 12);
+            this.label6.TabIndex = 20;
+            this.label6.Text = "是否欠货:";
+            // 
+            // ddlIsowegoods
+            // 
+            this.ddlIsowegoods.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ddlIsowegoods.FormattingEnabled = true;
+            this.ddlIsowegoods.Location = new System.Drawing.Point(590, 54);
+            this.ddlIsowegoods.Name = "ddlIsowegoods";
+            this.ddlIsowegoods.Size = new System.Drawing.Size(102, 20);
+            this.ddlIsowegoods.TabIndex = 19;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.btnSearch);
+            this.groupBox1.Controls.Add(this.ddlChooser);
+            this.groupBox1.Controls.Add(this.label6);
+            this.groupBox1.Controls.Add(this.txtTop);
+            this.groupBox1.Controls.Add(this.ddlIsowegoods);
+            this.groupBox1.Controls.Add(this.txtDown);
+            this.groupBox1.Controls.Add(this.label5);
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.ddlIswrong);
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.label4);
+            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.ddlIsAssign);
+            this.groupBox1.Controls.Add(this.dtpSendDate);
+            this.groupBox1.Location = new System.Drawing.Point(6, 2);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(825, 87);
+            this.groupBox1.TabIndex = 21;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "查询";
+            // 
+            // btnSearch
+            // 
+            this.btnSearch.Location = new System.Drawing.Point(722, 26);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(75, 39);
+            this.btnSearch.TabIndex = 21;
+            this.btnSearch.Text = "查询";
+            this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            // 
+            // txtTop
+            // 
+            this.txtTop.IsDecimal = false;
+            this.txtTop.IsNegativeNumbers = false;
+            this.txtTop.Location = new System.Drawing.Point(331, 21);
+            this.txtTop.Name = "txtTop";
+            this.txtTop.Size = new System.Drawing.Size(69, 21);
+            this.txtTop.TabIndex = 9;
+            // 
+            // txtDown
+            // 
+            this.txtDown.IsDecimal = false;
+            this.txtDown.IsNegativeNumbers = false;
+            this.txtDown.Location = new System.Drawing.Point(408, 21);
+            this.txtDown.Name = "txtDown";
+            this.txtDown.Size = new System.Drawing.Size(69, 21);
+            this.txtDown.TabIndex = 10;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox2.Controls.Add(this.label13);
+            this.groupBox2.Controls.Add(this.label12);
+            this.groupBox2.Controls.Add(this.txtWeight_2);
+            this.groupBox2.Controls.Add(this.label11);
+            this.groupBox2.Controls.Add(this.txtWeight_1);
+            this.groupBox2.Controls.Add(this.label10);
+            this.groupBox2.Controls.Add(this.btnTest);
+            this.groupBox2.Controls.Add(this.ddlPageSize);
+            this.groupBox2.Controls.Add(this.label9);
+            this.groupBox2.Controls.Add(this.ddlProt);
+            this.groupBox2.Controls.Add(this.label8);
+            this.groupBox2.Controls.Add(this.ddlPrinter);
+            this.groupBox2.Controls.Add(this.label7);
+            this.groupBox2.Location = new System.Drawing.Point(6, 89);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(825, 100);
+            this.groupBox2.TabIndex = 22;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "打印";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(645, 65);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(17, 12);
+            this.label13.TabIndex = 30;
+            this.label13.Text = "斤";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(458, 65);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(17, 12);
+            this.label12.TabIndex = 29;
+            this.label12.Text = "斤";
+            // 
+            // txtWeight_2
+            // 
+            this.txtWeight_2.IsDecimal = true;
+            this.txtWeight_2.IsNegativeNumbers = false;
+            this.txtWeight_2.Location = new System.Drawing.Point(574, 61);
+            this.txtWeight_2.Name = "txtWeight_2";
+            this.txtWeight_2.Size = new System.Drawing.Size(69, 21);
+            this.txtWeight_2.TabIndex = 27;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(509, 65);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(59, 12);
+            this.label11.TabIndex = 28;
+            this.label11.Text = "手动数值:";
+            // 
+            // txtWeight_1
+            // 
+            this.txtWeight_1.IsDecimal = true;
+            this.txtWeight_1.IsNegativeNumbers = false;
+            this.txtWeight_1.Location = new System.Drawing.Point(387, 61);
+            this.txtWeight_1.Name = "txtWeight_1";
+            this.txtWeight_1.Size = new System.Drawing.Size(69, 21);
+            this.txtWeight_1.TabIndex = 22;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(322, 65);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(59, 12);
+            this.label10.TabIndex = 23;
+            this.label10.Text = "实时数值:";
+            // 
+            // btnTest
+            // 
+            this.btnTest.Location = new System.Drawing.Point(220, 60);
+            this.btnTest.Name = "btnTest";
+            this.btnTest.Size = new System.Drawing.Size(75, 23);
+            this.btnTest.TabIndex = 23;
+            this.btnTest.Text = "测试端口";
+            this.btnTest.UseVisualStyleBackColor = true;
+            this.btnTest.Click += new System.EventHandler(this.btnTest_Click);
+            // 
+            // ddlPageSize
+            // 
+            this.ddlPageSize.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ddlPageSize.FormattingEnabled = true;
+            this.ddlPageSize.Location = new System.Drawing.Point(387, 24);
+            this.ddlPageSize.Name = "ddlPageSize";
+            this.ddlPageSize.Size = new System.Drawing.Size(99, 20);
+            this.ddlPageSize.TabIndex = 25;
+            this.ddlPageSize.SelectedIndexChanged += new System.EventHandler(this.ddlPageSize_SelectedIndexChanged);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(346, 28);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(35, 12);
+            this.label9.TabIndex = 26;
+            this.label9.Text = "纸张:";
+            // 
+            // ddlProt
+            // 
+            this.ddlProt.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ddlProt.FormattingEnabled = true;
+            this.ddlProt.Location = new System.Drawing.Point(89, 61);
+            this.ddlProt.Name = "ddlProt";
+            this.ddlProt.Size = new System.Drawing.Size(99, 20);
+            this.ddlProt.TabIndex = 23;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(12, 65);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(71, 12);
+            this.label8.TabIndex = 24;
+            this.label8.Text = "电子秤串口:";
+            // 
+            // ddlPrinter
+            // 
+            this.ddlPrinter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ddlPrinter.FormattingEnabled = true;
+            this.ddlPrinter.Location = new System.Drawing.Point(89, 24);
+            this.ddlPrinter.Name = "ddlPrinter";
+            this.ddlPrinter.Size = new System.Drawing.Size(206, 20);
+            this.ddlPrinter.TabIndex = 22;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(36, 28);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(47, 12);
+            this.label7.TabIndex = 22;
+            this.label7.Text = "打印机:";
+            // 
+            // ucPagerEx1
+            // 
+            this.ucPagerEx1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.ucPagerEx1.Location = new System.Drawing.Point(211, 588);
+            this.ucPagerEx1.Name = "ucPagerEx1";
+            this.ucPagerEx1.PageIndex = 1;
+            this.ucPagerEx1.PageSize = 15;
+            this.ucPagerEx1.PreviousPage = 0;
+            this.ucPagerEx1.RecordCount = 0;
+            this.ucPagerEx1.Size = new System.Drawing.Size(417, 30);
+            this.ucPagerEx1.TabIndex = 23;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -620,11 +621,11 @@
             this.Text = "Form1";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.dgvData)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chooseDataBindingSource)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.chooseDataBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }

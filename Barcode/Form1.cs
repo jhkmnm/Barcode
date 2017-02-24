@@ -12,6 +12,7 @@ using System.Net;
 using System.Net.Cache;
 using System.ComponentModel;
 using Microsoft.Win32;
+using CrystalDecisions.CrystalReports.Engine;
 
 namespace Barcode
 {
@@ -23,7 +24,7 @@ namespace Barcode
         string str_ChooserData = "/getChooseData";
         string str_SaveAndPrint = "/saveAndPrint";
 
-        ProductWeight rpt = null;
+        ReportClass rpt = null;
         DataTable printdata = null;
 
         KCCPort port = new KCCPort();
@@ -105,7 +106,10 @@ namespace Barcode
             }
             if(rpt == null)
             {
-                rpt = new ProductWeight();
+                if (ddlPageSize.Text == "40 x 30")
+                    rpt = new ProductWeight();
+                else
+                    rpt = new ProductWeight60();
                 rpt.PrintOptions.PrinterName = ddlPrinter.Text;//System.Configuration.ConfigurationManager.AppSettings.Get("PrintName_InStockLabel");
                 var doc = new System.Drawing.Printing.PrintDocument
                 {
@@ -388,6 +392,11 @@ namespace Barcode
                 rpt.Dispose();
             }
         }
+
+        private void ddlPageSize_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            rpt = null;
+        }
     }
 
     #region 实体
@@ -550,7 +559,7 @@ namespace Barcode
     {
         [Description("40 x 30")]
         A,
-        [Description("40 x 60")]
+        [Description("50 x 40")]
         B,
     }
     #endregion
