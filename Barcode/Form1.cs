@@ -40,6 +40,9 @@ namespace Barcode
             LoadChooser();
             InitDDL();
             LoadDevice();
+
+            ucPagerEx1.InitPageInfo(0, 20);
+            ucPagerEx1.PageChanged += ucPagerEx1_PageChanged;
         }
 
         #region 初始化窗口
@@ -198,6 +201,7 @@ namespace Barcode
         private void On()
         {
             on_off = false;
+            if(ma != null)
             ma.Set();
         }
         /// <summary>
@@ -233,7 +237,7 @@ namespace Barcode
                     catch { }
                 }
 
-                Thread.Sleep(1500);
+                Thread.Sleep(500);
             }            
         }
 
@@ -300,8 +304,9 @@ namespace Barcode
                     foreach(DataGridViewRow row in dgvData.SelectedRows)
                     {
                         row.Selected = false;
-                    }                    
-                    dgvData.Rows[0].Selected = true;
+                    }
+                    if(dgvData.Rows.Count > 0)                    
+                        dgvData.Rows[0].Selected = true;
                 }
             }
         }
@@ -314,11 +319,7 @@ namespace Barcode
         {
             var chooserdata = Search(1);
             ChooseDataList = chooserdata.Data;
-
-            //ucPagerEx1.RecordCount = chooserdata.Page.Total;
             ucPagerEx1.InitPageInfo(chooserdata.Page.Total, chooserdata.Page.PageSize);
-            ucPagerEx1.PageChanged -= ucPagerEx1_PageChanged;
-            ucPagerEx1.PageChanged += ucPagerEx1_PageChanged;
         }
 
         private ChooseDataResult Search(int page)
