@@ -68,8 +68,8 @@
       <DependentUpon>FormLogin.cs</DependentUpon>
     </Compile>
     <Compile Include="KCCPort.cs" />
-    <Compile Include="ProductWeight60.cs">
-      <DependentUpon>ProductWeight60.rpt</DependentUpon>
+    <Compile Include="ProductWeight50.cs">
+      <DependentUpon>ProductWeight50.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
       <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
@@ -80,6 +80,12 @@
       <DependentUpon>ProductWeight.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ProductWeight60.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ProductWeight60.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
@@ -88,13 +94,17 @@
     <EmbeddedResource Include="FormLogin.resx">
       <DependentUpon>FormLogin.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ProductWeight60.rpt">
+    <EmbeddedResource Include="ProductWeight50.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>ProductWeight60.cs</LastGenOutput>
+      <LastGenOutput>ProductWeight50.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="ProductWeight.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>ProductWeight.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProductWeight60.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ProductWeight60.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

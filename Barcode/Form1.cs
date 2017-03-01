@@ -18,7 +18,7 @@ namespace Barcode
 {
     public partial class Form1 : Form
     {
-        string str_api = "http://czd.xinlvs.com/index.php/api/api";
+        string str_api = "http://abc.xxczd.com/index.php/api/api";
         const string token = "chzpdx2014mn1989";        
         string str_Chooser = "/getChooser";
         string str_ChooserData = "/getChooseData";
@@ -111,8 +111,10 @@ namespace Barcode
             {
                 if (ddlPageSize.Text == "40 x 30")
                     rpt = new ProductWeight();
-                else
+                else if (ddlPageSize.Text == "40 x 60")
                     rpt = new ProductWeight60();
+                else
+                    rpt = new ProductWeight50();
                 rpt.PrintOptions.PrinterName = ddlPrinter.Text;//System.Configuration.ConfigurationManager.AppSettings.Get("PrintName_InStockLabel");
                 var doc = new System.Drawing.Printing.PrintDocument
                 {
@@ -122,18 +124,25 @@ namespace Barcode
                     }
                 };
                 var papername = ddlPageSize.Text;//System.Configuration.ConfigurationManager.AppSettings.Get("PaperName_4585");
+                bool hassize = false;
                 if (!string.IsNullOrEmpty(papername))
                 {
                     for (var i = 0; i <= doc.PrinterSettings.PaperSizes.Count - 1; i++)
                     {
                         if (doc.PrinterSettings.PaperSizes[i].PaperName.ToLower() == papername)
                         {
+                            hassize = true;
                             rpt.PrintOptions.PaperSize = (CrystalDecisions.Shared.PaperSize)doc.PrinterSettings.PaperSizes[i].RawKind;
                             break;
                         }
                     }
                 }
-            }
+                if (!hassize)
+                {
+                    MessageBox.Show("系统内未找到" + ddlPageSize.Text +"的纸张，请先配置纸张");
+                    return false;
+                }                    
+            }            
             
             try
             {
@@ -562,6 +571,8 @@ namespace Barcode
         A,
         [Description("50 x 40")]
         B,
+        //[Description("40 x 60")]
+        //C
     }
     #endregion
 }

@@ -12,7 +12,7 @@ namespace Barcode
 {
     public partial class FormLogin : Form
     {
-        string str_api = "http://czd.xinlvs.com/index.php/api/api";
+        string str_api = "http://abc.xxczd.com/index.php/api/api";
         const string token = "chzpdx2014mn1989";
         string str_province = "/getProvince";
         string str_city = "/getCity";
