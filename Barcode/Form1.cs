@@ -40,7 +40,8 @@ namespace Barcode
 
             foreach(DataGridViewColumn col in dgvData.Columns)
             {
-                col.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+                if(col.Name != colremark.Name && col.Name != colWeight.Name)
+                    col.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             }
 
             LoadChooser();
@@ -119,17 +120,17 @@ namespace Barcode
                     rpt = new ProductWeight();
                 else if (ddlPageSize.Text == "40 x 60")
                     rpt = new ProductWeight60();
-                else
-                    rpt = new ProductWeight50();
-                rpt.PrintOptions.PrinterName = ddlPrinter.Text;//System.Configuration.ConfigurationManager.AppSettings.Get("PrintName_InStockLabel");
+                //else
+                //    rpt = new ProductWeight50();
+                rpt.PrintOptions.PrinterName = ddlPrinter.Text;
                 var doc = new System.Drawing.Printing.PrintDocument
                 {
                     PrinterSettings =
                     {
-                        PrinterName = ddlPrinter.Text //System.Configuration.ConfigurationManager.AppSettings.Get("PrintName_InStockLabel")
+                        PrinterName = ddlPrinter.Text
                     }
                 };
-                var papername = ddlPageSize.Text;//System.Configuration.ConfigurationManager.AppSettings.Get("PaperName_4585");
+                var papername = ddlPageSize.Text;
                 bool hassize = false;
                 if (!string.IsNullOrEmpty(papername))
                 {
@@ -577,8 +578,8 @@ namespace Barcode
         A,
         [Description("50 x 40")]
         B,
-        //[Description("40 x 60")]
-        //C
+        [Description("40 x 60")]
+        C
     }
     #endregion
 }

@@ -32,29 +32,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgvData = new System.Windows.Forms.DataGridView();
-            this.colID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.coloID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colsendOrder = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colcName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colname = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colunit = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colchooseOrder = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colkNum = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colnum = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colremark = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Weight = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colAction = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.colpID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colisAssign = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colisOwegoods = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colisWrong = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colprice = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colrealNum = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colorderDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colsendDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colu_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.coluid = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colchooserID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.chooseDataBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.ddlChooser = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -86,6 +63,29 @@
             this.ddlPrinter = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
             this.ucPagerEx1 = new Utilities.UserControls.UcPagerEx();
+            this.colID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.coloID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colsendOrder = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colcName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colname = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colunit = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colchooseOrder = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colkNum = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colnum = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colremark = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Weight = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colAction = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.colpID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colisAssign = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colisOwegoods = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colisWrong = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colprice = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colrealNum = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colorderDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colsendDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colu_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.coluid = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colchooserID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvData)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chooseDataBindingSource)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -95,7 +95,7 @@
             // dgvData
             // 
             this.dgvData.AllowUserToAddRows = false;
-            this.dgvData.AllowUserToDeleteRows = false;            
+            this.dgvData.AllowUserToDeleteRows = false;
             this.dgvData.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -139,173 +139,11 @@
             this.dgvData.RowHeadersWidth = 21;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.dgvData.RowsDefaultCellStyle = dataGridViewCellStyle2;
-            this.dgvData.RowTemplate.Height = 23;
+            this.dgvData.RowTemplate.Height = 33;
             this.dgvData.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvData.Size = new System.Drawing.Size(825, 380);
             this.dgvData.TabIndex = 7;
             this.dgvData.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvData_CellContentClick);
-            // 
-            // colID
-            // 
-            this.colID.DataPropertyName = "ID";
-            this.colID.HeaderText = "ID";
-            this.colID.Name = "colID";
-            this.colID.Visible = false;
-            // 
-            // coloID
-            // 
-            this.coloID.DataPropertyName = "O_ID";
-            this.coloID.HeaderText = "订单号";
-            this.coloID.Name = "coloID";
-            this.coloID.Width = 65;
-            // 
-            // colsendOrder
-            // 
-            this.colsendOrder.DataPropertyName = "Send_Order";
-            this.colsendOrder.HeaderText = "配送顺序";
-            this.colsendOrder.Name = "colsendOrder";
-            this.colsendOrder.Width = 80;            
-            // 
-            // colcName
-            // 
-            this.colcName.DataPropertyName = "CName";
-            this.colcName.HeaderText = "客户名称";
-            this.colcName.Name = "colcName";
-            this.colcName.Width = 140;
-            // 
-            // colname
-            // 
-            this.colname.DataPropertyName = "Name";
-            this.colname.HeaderText = "商品名称";
-            this.colname.Name = "colname";
-            this.colname.Width = 140;
-            // 
-            // colunit
-            // 
-            this.colunit.DataPropertyName = "Unit";
-            this.colunit.HeaderText = "单位";
-            this.colunit.Name = "colunit";
-            this.colunit.Width = 60;
-            // 
-            // colchooseOrder
-            // 
-            this.colchooseOrder.DataPropertyName = "Choose_Order";
-            this.colchooseOrder.HeaderText = "存放位置";
-            this.colchooseOrder.Name = "colchooseOrder";
-            this.colchooseOrder.Width = 80;
-            // 
-            // colkNum
-            // 
-            this.colkNum.DataPropertyName = "K_Num";
-            this.colkNum.HeaderText = "库存";
-            this.colkNum.Name = "colkNum";
-            this.colkNum.Width = 60;
-            // 
-            // colnum
-            // 
-            this.colnum.DataPropertyName = "Num";
-            this.colnum.HeaderText = "数量";
-            this.colnum.Name = "colnum";
-            this.colnum.Width = 60;
-            // 
-            // colremark
-            // 
-            this.colremark.DataPropertyName = "Remark";
-            this.colremark.HeaderText = "要求";
-            this.colremark.Name = "colremark";
-            this.colremark.Width = 120;
-            // 
-            // Weight
-            // 
-            this.Weight.DataPropertyName = "Weight";
-            this.Weight.HeaderText = "重量";
-            this.Weight.Name = "Weight";
-            // 
-            // colAction
-            // 
-            this.colAction.DataPropertyName = "Action";
-            this.colAction.HeaderText = "操作";
-            this.colAction.Name = "colAction";
-            this.colAction.ReadOnly = true;
-            this.colAction.Text = "保存打印";
-            // 
-            // colpID
-            // 
-            this.colpID.DataPropertyName = "P_ID";
-            this.colpID.HeaderText = "P_ID";
-            this.colpID.Name = "colpID";
-            this.colpID.Visible = false;
-            // 
-            // colisAssign
-            // 
-            this.colisAssign.DataPropertyName = "Is_Assign";
-            this.colisAssign.HeaderText = "Is_Assign";
-            this.colisAssign.Name = "colisAssign";
-            this.colisAssign.Visible = false;
-            // 
-            // colisOwegoods
-            // 
-            this.colisOwegoods.DataPropertyName = "Is_Owegoods";
-            this.colisOwegoods.HeaderText = "Is_Owegoods";
-            this.colisOwegoods.Name = "colisOwegoods";
-            this.colisOwegoods.Visible = false;
-            // 
-            // colisWrong
-            // 
-            this.colisWrong.DataPropertyName = "Is_Wrong";
-            this.colisWrong.HeaderText = "Is_Wrong";
-            this.colisWrong.Name = "colisWrong";
-            this.colisWrong.Visible = false;
-            // 
-            // colprice
-            // 
-            this.colprice.DataPropertyName = "Price";
-            this.colprice.HeaderText = "Price";
-            this.colprice.Name = "colprice";
-            this.colprice.Visible = false;
-            // 
-            // colrealNum
-            // 
-            this.colrealNum.DataPropertyName = "Real_Num";
-            this.colrealNum.HeaderText = "Real_Num";
-            this.colrealNum.Name = "colrealNum";
-            this.colrealNum.Visible = false;
-            // 
-            // colorderDate
-            // 
-            this.colorderDate.DataPropertyName = "Order_Date";
-            this.colorderDate.HeaderText = "Order_Date";
-            this.colorderDate.Name = "colorderDate";
-            this.colorderDate.Visible = false;
-            // 
-            // colsendDate
-            // 
-            this.colsendDate.DataPropertyName = "Send_Date";
-            this.colsendDate.HeaderText = "Send_Date";
-            this.colsendDate.Name = "colsendDate";
-            this.colsendDate.Visible = false;
-            this.colsendDate.Width = 90;
-            // 
-            // colu_ID
-            // 
-            this.colu_ID.DataPropertyName = "U_ID";
-            this.colu_ID.HeaderText = "U_ID";
-            this.colu_ID.Name = "colu_ID";
-            this.colu_ID.Visible = false;
-            // 
-            // coluid
-            // 
-            this.coluid.DataPropertyName = "Uid";
-            this.coluid.HeaderText = "Uid";
-            this.coluid.Name = "coluid";
-            this.coluid.Visible = false;
-            // 
-            // colchooserID
-            // 
-            this.colchooserID.DataPropertyName = "Chooser_ID";
-            this.colchooserID.HeaderText = "Chooser_ID";
-            this.colchooserID.Name = "colchooserID";
-            this.colchooserID.Visible = false;
             // 
             // chooseDataBindingSource
             // 
@@ -619,6 +457,168 @@
             this.ucPagerEx1.RecordCount = 0;
             this.ucPagerEx1.Size = new System.Drawing.Size(417, 30);
             this.ucPagerEx1.TabIndex = 23;
+            // 
+            // colID
+            // 
+            this.colID.DataPropertyName = "ID";
+            this.colID.HeaderText = "ID";
+            this.colID.Name = "colID";
+            this.colID.Visible = false;
+            // 
+            // coloID
+            // 
+            this.coloID.DataPropertyName = "O_ID";
+            this.coloID.HeaderText = "订单号";
+            this.coloID.Name = "coloID";
+            this.coloID.Width = 65;
+            // 
+            // colsendOrder
+            // 
+            this.colsendOrder.DataPropertyName = "Send_Order";
+            this.colsendOrder.HeaderText = "配送顺序";
+            this.colsendOrder.Name = "colsendOrder";
+            this.colsendOrder.Width = 80;
+            // 
+            // colcName
+            // 
+            this.colcName.DataPropertyName = "CName";
+            this.colcName.HeaderText = "客户名称";
+            this.colcName.Name = "colcName";
+            this.colcName.Width = 140;
+            // 
+            // colname
+            // 
+            this.colname.DataPropertyName = "Name";
+            this.colname.HeaderText = "商品名称";
+            this.colname.Name = "colname";
+            this.colname.Width = 140;
+            // 
+            // colunit
+            // 
+            this.colunit.DataPropertyName = "Unit";
+            this.colunit.HeaderText = "单位";
+            this.colunit.Name = "colunit";
+            this.colunit.Width = 60;
+            // 
+            // colchooseOrder
+            // 
+            this.colchooseOrder.DataPropertyName = "Choose_Order";
+            this.colchooseOrder.HeaderText = "存放位置";
+            this.colchooseOrder.Name = "colchooseOrder";
+            this.colchooseOrder.Width = 80;
+            // 
+            // colkNum
+            // 
+            this.colkNum.DataPropertyName = "K_Num";
+            this.colkNum.HeaderText = "库存";
+            this.colkNum.Name = "colkNum";
+            this.colkNum.Width = 60;
+            // 
+            // colnum
+            // 
+            this.colnum.DataPropertyName = "Num";
+            this.colnum.HeaderText = "数量";
+            this.colnum.Name = "colnum";
+            this.colnum.Width = 60;
+            // 
+            // colremark
+            // 
+            this.colremark.DataPropertyName = "Remark";
+            this.colremark.HeaderText = "要求";
+            this.colremark.Name = "colremark";
+            this.colremark.Width = 220;
+            // 
+            // Weight
+            // 
+            this.Weight.DataPropertyName = "Weight";
+            this.Weight.HeaderText = "重量";
+            this.Weight.Name = "Weight";
+            // 
+            // colAction
+            // 
+            this.colAction.DataPropertyName = "Action";
+            this.colAction.HeaderText = "操作";
+            this.colAction.Name = "colAction";
+            this.colAction.ReadOnly = true;
+            this.colAction.Text = "保存打印";
+            // 
+            // colpID
+            // 
+            this.colpID.DataPropertyName = "P_ID";
+            this.colpID.HeaderText = "P_ID";
+            this.colpID.Name = "colpID";
+            this.colpID.Visible = false;
+            // 
+            // colisAssign
+            // 
+            this.colisAssign.DataPropertyName = "Is_Assign";
+            this.colisAssign.HeaderText = "Is_Assign";
+            this.colisAssign.Name = "colisAssign";
+            this.colisAssign.Visible = false;
+            // 
+            // colisOwegoods
+            // 
+            this.colisOwegoods.DataPropertyName = "Is_Owegoods";
+            this.colisOwegoods.HeaderText = "Is_Owegoods";
+            this.colisOwegoods.Name = "colisOwegoods";
+            this.colisOwegoods.Visible = false;
+            // 
+            // colisWrong
+            // 
+            this.colisWrong.DataPropertyName = "Is_Wrong";
+            this.colisWrong.HeaderText = "Is_Wrong";
+            this.colisWrong.Name = "colisWrong";
+            this.colisWrong.Visible = false;
+            // 
+            // colprice
+            // 
+            this.colprice.DataPropertyName = "Price";
+            this.colprice.HeaderText = "Price";
+            this.colprice.Name = "colprice";
+            this.colprice.Visible = false;
+            // 
+            // colrealNum
+            // 
+            this.colrealNum.DataPropertyName = "Real_Num";
+            this.colrealNum.HeaderText = "Real_Num";
+            this.colrealNum.Name = "colrealNum";
+            this.colrealNum.Visible = false;
+            // 
+            // colorderDate
+            // 
+            this.colorderDate.DataPropertyName = "Order_Date";
+            this.colorderDate.HeaderText = "Order_Date";
+            this.colorderDate.Name = "colorderDate";
+            this.colorderDate.Visible = false;
+            // 
+            // colsendDate
+            // 
+            this.colsendDate.DataPropertyName = "Send_Date";
+            this.colsendDate.HeaderText = "Send_Date";
+            this.colsendDate.Name = "colsendDate";
+            this.colsendDate.Visible = false;
+            this.colsendDate.Width = 90;
+            // 
+            // colu_ID
+            // 
+            this.colu_ID.DataPropertyName = "U_ID";
+            this.colu_ID.HeaderText = "U_ID";
+            this.colu_ID.Name = "colu_ID";
+            this.colu_ID.Visible = false;
+            // 
+            // coluid
+            // 
+            this.coluid.DataPropertyName = "Uid";
+            this.coluid.HeaderText = "Uid";
+            this.coluid.Name = "coluid";
+            this.coluid.Visible = false;
+            // 
+            // colchooserID
+            // 
+            this.colchooserID.DataPropertyName = "Chooser_ID";
+            this.colchooserID.HeaderText = "Chooser_ID";
+            this.colchooserID.Name = "colchooserID";
+            this.colchooserID.Visible = false;
             // 
             // Form1
             // 
