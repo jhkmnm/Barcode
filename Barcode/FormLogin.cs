@@ -7,6 +7,8 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Configuration;
+using IWshRuntimeLibrary;
 
 namespace Barcode
 {
@@ -21,9 +23,11 @@ namespace Barcode
 
         public FormLogin()
         {
+            CreateShortCut();
             this.StartPosition = FormStartPosition.CenterScreen;
             InitializeComponent();
             LoadProvince();
+            LoadPw();
         }
 
         private void LoadProvince()
@@ -98,6 +102,10 @@ namespace Barcode
                 MessageBox.Show(userresult.Message);
                 return;
             }
+
+            if (chkR.Checked)
+                SavePw();
+
             User.SessionID = userresult.Data.SessionID;
             this.DialogResult = DialogResult.OK;
         }
@@ -105,6 +113,46 @@ namespace Barcode
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.No;
+        }
+
+        /// <summary>
+        /// 本地保存登录的账号和密码
+        /// </summary>
+        public void SavePw()
+        {
+            Configuration configuration = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+            configuration.AppSettings.Settings["UserName"].Value = txtUserName.Text;
+            configuration.AppSettings.Settings["PassWord"].Value = txtPassword.Text;
+            configuration.AppSettings.Settings["chkSavePass"].Value = "True";
+            configuration.Save();
+        }
+
+        /// <summary>
+        /// 读取本地的账号和密码
+        /// </summary>
+        public void LoadPw()
+        {
+            if (ConfigurationManager.AppSettings["chkSavePass"] == "True")
+            {
+                txtUserName.Text = ConfigurationManager.AppSettings["UserName"];
+                txtPassword.Text = ConfigurationManager.AppSettings["PassWord"];
+                chkR.Checked = true;
+            }
+        }
+
+        public void CreateShortCut()
+        {
+            string strFullPath = Application.ExecutablePath;
+            string strFileName = System.IO.Path.GetFileNameWithoutExtension(strFullPath);
+            string DesktopPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Desktop);//得到桌面文件夹  
+            WshShell shell = new WshShell();
+            IWshShortcut shortcut = (IWshShortcut)shell.CreateShortcut(DesktopPath + "\\" + strFileName + ".lnk");
+            shortcut.TargetPath = System.Reflection.Assembly.GetExecutingAssembly().Location;
+            shortcut.Arguments = "";// 参数
+            //shortcut.Description = "我用C#创建的快捷方式";
+            shortcut.WorkingDirectory = System.Environment.CurrentDirectory;
+            shortcut.WindowStyle = 1;
+            shortcut.Save();
         }
     }
 }

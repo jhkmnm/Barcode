@@ -40,6 +40,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.chkR = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // ddlProvince
@@ -85,10 +86,11 @@
             this.txtPassword.Size = new System.Drawing.Size(121, 21);
             this.txtPassword.TabIndex = 4;
             this.txtPassword.Text = "zhanxi";
+            this.txtPassword.UseSystemPasswordChar = true;
             // 
             // btnLogin
             // 
-            this.btnLogin.Location = new System.Drawing.Point(74, 179);
+            this.btnLogin.Location = new System.Drawing.Point(74, 197);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(75, 23);
             this.btnLogin.TabIndex = 5;
@@ -98,7 +100,7 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(223, 179);
+            this.btnCancel.Location = new System.Drawing.Point(223, 197);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 6;
@@ -151,11 +153,22 @@
             this.label5.TabIndex = 11;
             this.label5.Text = "密码:";
             // 
+            // chkR
+            // 
+            this.chkR.AutoSize = true;
+            this.chkR.Location = new System.Drawing.Point(129, 174);
+            this.chkR.Name = "chkR";
+            this.chkR.Size = new System.Drawing.Size(108, 16);
+            this.chkR.TabIndex = 12;
+            this.chkR.Text = "记住账号和密码";
+            this.chkR.UseVisualStyleBackColor = true;
+            // 
             // FormLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(360, 221);
+            this.ClientSize = new System.Drawing.Size(360, 229);
+            this.Controls.Add(this.chkR);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -191,5 +204,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.CheckBox chkR;
     }
 }

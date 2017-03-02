@@ -37,6 +37,12 @@ namespace Barcode
         {
             this.WindowState = FormWindowState.Maximized;
             InitializeComponent();
+
+            foreach(DataGridViewColumn col in dgvData.Columns)
+            {
+                col.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            }
+
             LoadChooser();
             InitDDL();
             LoadDevice();
