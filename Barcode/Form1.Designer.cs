@@ -31,8 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.dgvData = new System.Windows.Forms.DataGridView();
-            this.chooseDataBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.dgvData = new RowMergeView();
             this.ddlChooser = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -63,6 +62,7 @@
             this.ddlPrinter = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
             this.ucPagerEx1 = new Utilities.UserControls.UcPagerEx();
+            this.colOwd = new System.Windows.Forms.DataGridViewButtonColumn();
             this.colID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.coloID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colsendOrder = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -73,7 +73,7 @@
             this.colkNum = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colnum = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colremark = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Weight = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colWeight = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colAction = new System.Windows.Forms.DataGridViewButtonColumn();
             this.colpID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colisAssign = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -86,10 +86,11 @@
             this.colu_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.coluid = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colchooserID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.chooseDataBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dgvData)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chooseDataBindingSource)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chooseDataBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // dgvData
@@ -112,8 +113,9 @@
             this.colkNum,
             this.colnum,
             this.colremark,
-            this.Weight,
+            this.colWeight,
             this.colAction,
+            this.colOwd,
             this.colpID,
             this.colisAssign,
             this.colisOwegoods,
@@ -144,10 +146,7 @@
             this.dgvData.Size = new System.Drawing.Size(825, 380);
             this.dgvData.TabIndex = 7;
             this.dgvData.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvData_CellContentClick);
-            // 
-            // chooseDataBindingSource
-            // 
-            this.chooseDataBindingSource.DataSource = typeof(Barcode.ChooseData);
+            this.dgvData.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.dgvData_CellPainting);
             // 
             // ddlChooser
             // 
@@ -458,6 +457,13 @@
             this.ucPagerEx1.Size = new System.Drawing.Size(417, 30);
             this.ucPagerEx1.TabIndex = 23;
             // 
+            // colOwd
+            // 
+            this.colOwd.DataPropertyName = "Owd";
+            this.colOwd.HeaderText = "Owd";
+            this.colOwd.Name = "colOwd";
+            this.colOwd.ReadOnly = true;
+            // 
             // colID
             // 
             this.colID.DataPropertyName = "ID";
@@ -528,11 +534,11 @@
             this.colremark.Name = "colremark";
             this.colremark.Width = 220;
             // 
-            // Weight
+            // colWeight
             // 
-            this.Weight.DataPropertyName = "Weight";
-            this.Weight.HeaderText = "重量";
-            this.Weight.Name = "Weight";
+            this.colWeight.DataPropertyName = "Weight";
+            this.colWeight.HeaderText = "重量";
+            this.colWeight.Name = "colWeight";
             // 
             // colAction
             // 
@@ -540,7 +546,6 @@
             this.colAction.HeaderText = "操作";
             this.colAction.Name = "colAction";
             this.colAction.ReadOnly = true;
-            this.colAction.Text = "保存打印";
             // 
             // colpID
             // 
@@ -620,6 +625,10 @@
             this.colchooserID.Name = "colchooserID";
             this.colchooserID.Visible = false;
             // 
+            // chooseDataBindingSource
+            // 
+            this.chooseDataBindingSource.DataSource = typeof(Barcode.ChooseData);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -633,18 +642,18 @@
             this.Text = "Form1";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.dgvData)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chooseDataBindingSource)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chooseDataBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dgvData;
+        private RowMergeView dgvData;
         private System.Windows.Forms.ComboBox ddlChooser;
         private Utilities.UserControls.TextIntegerOnly txtTop;
         private Utilities.UserControls.TextIntegerOnly txtDown;
@@ -673,10 +682,9 @@
         private System.Windows.Forms.ComboBox ddlPrinter;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.BindingSource chooseDataBindingSource;        
-        private System.Windows.Forms.DataGridViewTextBoxColumn colWeight;
         private Utilities.UserControls.UcPagerEx ucPagerEx1;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label12;        
         private System.Windows.Forms.DataGridViewTextBoxColumn colID;
         private System.Windows.Forms.DataGridViewTextBoxColumn coloID;
         private System.Windows.Forms.DataGridViewTextBoxColumn colsendOrder;
@@ -687,8 +695,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colkNum;
         private System.Windows.Forms.DataGridViewTextBoxColumn colnum;
         private System.Windows.Forms.DataGridViewTextBoxColumn colremark;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Weight;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colWeight;
         private System.Windows.Forms.DataGridViewButtonColumn colAction;
+        private System.Windows.Forms.DataGridViewButtonColumn colOwd;
         private System.Windows.Forms.DataGridViewTextBoxColumn colpID;
         private System.Windows.Forms.DataGridViewTextBoxColumn colisAssign;
         private System.Windows.Forms.DataGridViewTextBoxColumn colisOwegoods;

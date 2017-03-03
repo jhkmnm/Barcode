@@ -13,16 +13,18 @@ using System.Net.Cache;
 using System.ComponentModel;
 using Microsoft.Win32;
 using CrystalDecisions.CrystalReports.Engine;
+using System.Drawing;
 
 namespace Barcode
 {
     public partial class Form1 : Form
     {
         string str_api = "http://abc.xxczd.com/index.php/api/api";
-        const string token = "chzpdx2014mn1989";        
+        const string token = "chzpdx2014mn1989";
         string str_Chooser = "/getChooser";
         string str_ChooserData = "/getChooseData";
         string str_SaveAndPrint = "/saveAndPrint";
+        string str_OweGoods = "/oweGoods";
 
         ReportClass rpt = null;
         DataTable printdata = null;
@@ -40,7 +42,7 @@ namespace Barcode
 
             foreach(DataGridViewColumn col in dgvData.Columns)
             {
-                if(col.Name != colremark.Name && col.Name != colWeight.Name)
+                if (col.Name != colremark.Name && col.Name != colWeight.Name && col.Name != colOwd.Name)
                     col.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             }
 
@@ -381,6 +383,17 @@ namespace Barcode
             return dv.Pass;
         }
 
+        private bool SaveOweGoods()
+        {
+            var postdata = string.Format("token={0}&sessionId={1}&id={2}", token, User.SessionID, CurrentData.ID);
+            var htmlstr = Html.Post(str_api + str_OweGoods, postdata);
+            var result = JsonConvert.DeserializeObject<Result>(htmlstr);
+            Utilities.DataVerifier dv = new Utilities.DataVerifier();
+            dv.Check(result.Status == "40000", result.Message);
+            dv.ShowMsgIfFailed();
+            return dv.Pass;
+        }
+
         void dgvData_CellContentClick(object sender, System.Windows.Forms.DataGridViewCellEventArgs e)
         {
             if (e.ColumnIndex < 0 || e.RowIndex < 0)
@@ -396,6 +409,13 @@ namespace Barcode
                     txtWeight_2.Text = "";
                 }
                 On();
+            }
+            else if(e.ColumnIndex == colOwd.Index)
+            {
+                if(SaveOweGoods())
+                {
+                    dgvData.Rows[e.RowIndex].DefaultCellStyle.BackColor = System.Drawing.Color.Yellow;
+                }
             }
         }
         #endregion
@@ -413,6 +433,69 @@ namespace Barcode
         private void ddlPageSize_SelectedIndexChanged(object sender, EventArgs e)
         {
             rpt = null;
+        }
+
+        int top = 0;
+        int left = 0;
+        int height = 0;
+        int width1 = 0;
+
+        private void dgvData_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
+        {
+            #region 重绘datagridview表头
+            DataGridView dgv = (DataGridView)(sender);
+            if (e.RowIndex == -1 && (e.ColumnIndex == colAction.Index || e.ColumnIndex == colOwd.Index))
+            {
+                if (e.ColumnIndex == colAction.Index)
+                {
+                    top = e.CellBounds.Top;
+                    left = e.CellBounds.Left;
+                    height = e.CellBounds.Height;
+                    width1 = e.CellBounds.Width;
+                }
+
+                int width2 = colOwd.Width;
+
+                Rectangle rect = new Rectangle(left, top, width1 + width2, e.CellBounds.Height);
+                using (Brush backColorBrush = new SolidBrush(e.CellStyle.BackColor))
+                {
+                    //抹去原来的cell背景
+                    e.Graphics.FillRectangle(backColorBrush, rect);
+                }
+                using (Pen pen = new Pen(Color.White))
+                {
+                    e.Graphics.DrawLine(pen, left + 1, top + 1, left + width1 + width2 - 1, top + 1);
+                }
+                using (Pen gridLinePen = new Pen(dgv.GridColor))
+                {
+                    e.Graphics.DrawLine(gridLinePen, left, top, left + width1 + width2, top);
+                    e.Graphics.DrawLine(gridLinePen, left, top + height - 1, left + width1 + width2, top + height - 1);
+                    e.Graphics.DrawLine(gridLinePen, left, top, left, top + height);
+                    e.Graphics.DrawLine(gridLinePen, left + width1 + width2 - 1, top, left + width1 + width2 - 1, top + height);
+
+                    //计算绘制字符串的位置
+                    string columnValue = "操作";
+                    SizeF sf = e.Graphics.MeasureString(columnValue, e.CellStyle.Font);
+                    float lstr = (width1 + width2 - sf.Width) / 2;
+                    float rstr = (height / 2 - sf.Height);
+                    //画出文本框
+                    if (columnValue != "")
+                    {
+                        e.Graphics.DrawString(columnValue, e.CellStyle.Font,
+                                                   new SolidBrush(e.CellStyle.ForeColor),
+                                                     left + lstr,
+                                                     top + rstr + 10,
+                                                     StringFormat.GenericDefault);
+                    }
+                }
+                e.Handled = true;
+            }
+            #endregion
+        }
+
+        private void dgvData_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            
         }
     }
 
@@ -489,6 +572,7 @@ namespace Barcode
         public string Chooser_ID { get; set; }
         public string Weight { get; set; }
         public string Action { get { return "保存打印"; } }
+        public string Owd { get { return "欠货"; } }
     }
 
     public class Page

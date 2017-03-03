@@ -76,6 +76,12 @@
       <DependentUpon>ProductWeight.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ProductWeight50.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ProductWeight50.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ProductWeight60.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -84,6 +90,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RowMergeView.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="RowMergeView.Designer.cs">
+      <DependentUpon>RowMergeView.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -93,6 +105,10 @@
     <EmbeddedResource Include="ProductWeight.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>ProductWeight.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProductWeight50.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ProductWeight50.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="ProductWeight60.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -107,6 +123,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="RowMergeView.resx">
+      <DependentUpon>RowMergeView.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
