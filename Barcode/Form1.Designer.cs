@@ -31,7 +31,9 @@
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.dgvData = new RowMergeView();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.ddlChooser = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -62,7 +64,7 @@
             this.ddlPrinter = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
             this.ucPagerEx1 = new Utilities.UserControls.UcPagerEx();
-            this.colOwd = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.dgvData = new RowMergeView();
             this.colID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.coloID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colsendOrder = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -75,6 +77,7 @@
             this.colremark = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colWeight = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colAction = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.colOwd = new System.Windows.Forms.DataGridViewButtonColumn();
             this.colpID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colisAssign = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colisOwegoods = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -87,66 +90,11 @@
             this.coluid = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colchooserID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.chooseDataBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvData)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvData)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chooseDataBindingSource)).BeginInit();
             this.SuspendLayout();
-            // 
-            // dgvData
-            // 
-            this.dgvData.AllowUserToAddRows = false;
-            this.dgvData.AllowUserToDeleteRows = false;
-            this.dgvData.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgvData.AutoGenerateColumns = false;
-            this.dgvData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvData.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.colID,
-            this.coloID,
-            this.colsendOrder,
-            this.colcName,
-            this.colname,
-            this.colunit,
-            this.colchooseOrder,
-            this.colkNum,
-            this.colnum,
-            this.colremark,
-            this.colWeight,
-            this.colAction,
-            this.colOwd,
-            this.colpID,
-            this.colisAssign,
-            this.colisOwegoods,
-            this.colisWrong,
-            this.colprice,
-            this.colrealNum,
-            this.colorderDate,
-            this.colsendDate,
-            this.colu_ID,
-            this.coluid,
-            this.colchooserID});
-            this.dgvData.DataSource = this.chooseDataBindingSource;
-            this.dgvData.Location = new System.Drawing.Point(6, 202);
-            this.dgvData.Name = "dgvData";
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvData.RowHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.dgvData.RowHeadersWidth = 21;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.dgvData.RowsDefaultCellStyle = dataGridViewCellStyle2;
-            this.dgvData.RowTemplate.Height = 33;
-            this.dgvData.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvData.Size = new System.Drawing.Size(825, 380);
-            this.dgvData.TabIndex = 7;
-            this.dgvData.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvData_CellContentClick);
-            this.dgvData.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.dgvData_CellPainting);
             // 
             // ddlChooser
             // 
@@ -457,12 +405,78 @@
             this.ucPagerEx1.Size = new System.Drawing.Size(417, 30);
             this.ucPagerEx1.TabIndex = 23;
             // 
-            // colOwd
+            // dgvData
             // 
-            this.colOwd.DataPropertyName = "Owd";
-            this.colOwd.HeaderText = "Owd";
-            this.colOwd.Name = "colOwd";
-            this.colOwd.ReadOnly = true;
+            this.dgvData.AllowUserToAddRows = false;
+            this.dgvData.AllowUserToDeleteRows = false;
+            this.dgvData.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvData.AutoGenerateColumns = false;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvData.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvData.ColumnHeadersHeight = 31;
+            this.dgvData.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.colID,
+            this.coloID,
+            this.colsendOrder,
+            this.colcName,
+            this.colname,
+            this.colunit,
+            this.colchooseOrder,
+            this.colkNum,
+            this.colnum,
+            this.colremark,
+            this.colWeight,
+            this.colAction,
+            this.colOwd,
+            this.colpID,
+            this.colisAssign,
+            this.colisOwegoods,
+            this.colisWrong,
+            this.colprice,
+            this.colrealNum,
+            this.colorderDate,
+            this.colsendDate,
+            this.colu_ID,
+            this.coluid,
+            this.colchooserID});
+            this.dgvData.DataSource = this.chooseDataBindingSource;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvData.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dgvData.Location = new System.Drawing.Point(6, 202);
+            this.dgvData.MergeColumnHeaderBackColor = System.Drawing.SystemColors.Control;
+            this.dgvData.MergeColumnNames = ((System.Collections.Generic.List<string>)(resources.GetObject("dgvData.MergeColumnNames")));
+            this.dgvData.Name = "dgvData";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvData.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.dgvData.RowHeadersWidth = 21;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.dgvData.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            this.dgvData.RowTemplate.Height = 33;
+            this.dgvData.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvData.Size = new System.Drawing.Size(825, 380);
+            this.dgvData.TabIndex = 7;
+            this.dgvData.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvData_CellContentClick);
+            this.dgvData.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.dgvData_CellPainting);
             // 
             // colID
             // 
@@ -546,6 +560,13 @@
             this.colAction.HeaderText = "操作";
             this.colAction.Name = "colAction";
             this.colAction.ReadOnly = true;
+            // 
+            // colOwd
+            // 
+            this.colOwd.DataPropertyName = "Owd";
+            this.colOwd.HeaderText = "Owd";
+            this.colOwd.Name = "colOwd";
+            this.colOwd.ReadOnly = true;
             // 
             // colpID
             // 
@@ -641,11 +662,11 @@
             this.Name = "Form1";
             this.Text = "Form1";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvData)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvData)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chooseDataBindingSource)).EndInit();
             this.ResumeLayout(false);
 

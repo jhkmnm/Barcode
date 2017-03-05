@@ -122,8 +122,8 @@ namespace Barcode
                     rpt = new ProductWeight();
                 else if (ddlPageSize.Text == "40 x 60")
                     rpt = new ProductWeight60();
-                //else
-                //    rpt = new ProductWeight50();
+                else
+                    rpt = new ProductWeight50();
                 rpt.PrintOptions.PrinterName = ddlPrinter.Text;
                 var doc = new System.Drawing.Printing.PrintDocument
                 {
