@@ -64,6 +64,9 @@
             this.ddlPrinter = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
             this.ucPagerEx1 = new Utilities.UserControls.UcPagerEx();
+            this.label14 = new System.Windows.Forms.Label();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.dgvData = new RowMergeView();
             this.colID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.coloID = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -201,6 +204,8 @@
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.textBox1);
+            this.groupBox1.Controls.Add(this.label14);
             this.groupBox1.Controls.Add(this.btnSearch);
             this.groupBox1.Controls.Add(this.ddlChooser);
             this.groupBox1.Controls.Add(this.label6);
@@ -224,9 +229,9 @@
             // 
             // btnSearch
             // 
-            this.btnSearch.Location = new System.Drawing.Point(722, 26);
+            this.btnSearch.Location = new System.Drawing.Point(712, 21);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(75, 39);
+            this.btnSearch.Size = new System.Drawing.Size(75, 22);
             this.btnSearch.TabIndex = 21;
             this.btnSearch.Text = "查询";
             this.btnSearch.UseVisualStyleBackColor = true;
@@ -247,7 +252,7 @@
             this.txtDown.IsNegativeNumbers = false;
             this.txtDown.Location = new System.Drawing.Point(408, 21);
             this.txtDown.Name = "txtDown";
-            this.txtDown.Size = new System.Drawing.Size(69, 21);
+            this.txtDown.Size = new System.Drawing.Size(67, 21);
             this.txtDown.TabIndex = 10;
             // 
             // groupBox2
@@ -404,6 +409,27 @@
             this.ucPagerEx1.RecordCount = 0;
             this.ucPagerEx1.Size = new System.Drawing.Size(417, 30);
             this.ucPagerEx1.TabIndex = 23;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(752, 59);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(65, 12);
+            this.label14.TabIndex = 23;
+            this.label14.Text = "秒自动刷新";
+            // 
+            // timer1
+            // 
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(712, 55);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(34, 21);
+            this.textBox1.TabIndex = 24;
+            this.textBox1.Text = "3";
             // 
             // dgvData
             // 
@@ -660,7 +686,7 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.dgvData);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "称重打印";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -730,6 +756,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colu_ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn coluid;
         private System.Windows.Forms.DataGridViewTextBoxColumn colchooserID;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }
 

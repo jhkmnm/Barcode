@@ -34,6 +34,7 @@ namespace Barcode
         ManualResetEvent ma;
         bool on_off = false;
         bool stop = false;
+        bool isPrint = false;
 
         public Form1()
         {
@@ -49,6 +50,7 @@ namespace Barcode
             LoadChooser();
             InitDDL();
             LoadDevice();
+            timer1.Interval = Convert.ToInt32(textBox1.Text);
 
             ucPagerEx1.InitPageInfo(0, 20);
             ucPagerEx1.PageChanged += ucPagerEx1_PageChanged;
@@ -156,8 +158,7 @@ namespace Barcode
             try
             {
                 rpt.SetDataSource(dt);
-                rpt.PrintToPrinter(1, true, 0, 0);                
-                //MessageBox.Show("打印完成");
+                rpt.PrintToPrinter(1, true, 0, 0); 
                 return true;
             }
             catch (Exception ex)
@@ -186,6 +187,12 @@ namespace Barcode
             }
             else
                 printdata.Rows.Clear();
+
+            if(string.IsNullOrWhiteSpace(CurrentData.Send_Order) || string.IsNullOrWhiteSpace(CurrentData.CName) || string.IsNullOrWhiteSpace(CurrentData.Name))
+            {
+                MessageBox.Show("数据不完整，不能打印");
+                return false;
+            }
 
             var newrow = printdata.NewRow();
             newrow["PIndex"] = CurrentData.Send_Order;
@@ -335,7 +342,12 @@ namespace Barcode
         }
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            var chooserdata = Search(1);
+            LoadData(1);
+        }
+
+        private void LoadData(int page)
+        {
+            var chooserdata = Search(page);
             ChooseDataList = chooserdata.Data;
             ucPagerEx1.InitPageInfo(chooserdata.Page.Total, chooserdata.Page.PageSize);
         }
@@ -402,12 +414,14 @@ namespace Barcode
             if(e.ColumnIndex == colAction.Index)
             {
                 Off();
-                if(SaveWeight())
+                isPrint = true;
+                if (SaveWeight())
                 {
                     dgvData.Rows[e.RowIndex].Selected = false;
                     dgvData.Rows[e.RowIndex + 1].Selected = true;
                     txtWeight_2.Text = "";
                 }
+                isPrint = false;
                 On();
             }
             else if(e.ColumnIndex == colOwd.Index)
@@ -496,6 +510,19 @@ namespace Barcode
         private void dgvData_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
             
+        }
+
+        private void textIntegerOnly1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+           
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            timer1.Enabled = false;
+            if(!isPrint)
+                LoadData(ucPagerEx1.PageIndex);
+            timer1.Enabled = true;
         }
     }
 
