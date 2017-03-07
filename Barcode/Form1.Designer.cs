@@ -46,6 +46,8 @@
             this.label6 = new System.Windows.Forms.Label();
             this.ddlIsowegoods = new System.Windows.Forms.ComboBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
             this.btnSearch = new System.Windows.Forms.Button();
             this.txtTop = new Utilities.UserControls.TextIntegerOnly();
             this.txtDown = new Utilities.UserControls.TextIntegerOnly();
@@ -64,9 +66,7 @@
             this.ddlPrinter = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
             this.ucPagerEx1 = new Utilities.UserControls.UcPagerEx();
-            this.label14 = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.dgvData = new RowMergeView();
             this.colID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.coloID = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -86,7 +86,6 @@
             this.colisOwegoods = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colisWrong = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colprice = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colrealNum = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colorderDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colsendDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colu_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -226,6 +225,23 @@
             this.groupBox1.TabIndex = 21;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "查询";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(712, 55);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(34, 21);
+            this.textBox1.TabIndex = 24;
+            this.textBox1.Text = "3";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(752, 59);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(65, 12);
+            this.label14.TabIndex = 23;
+            this.label14.Text = "秒自动刷新";
             // 
             // btnSearch
             // 
@@ -410,26 +426,9 @@
             this.ucPagerEx1.Size = new System.Drawing.Size(417, 30);
             this.ucPagerEx1.TabIndex = 23;
             // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(752, 59);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(65, 12);
-            this.label14.TabIndex = 23;
-            this.label14.Text = "秒自动刷新";
-            // 
             // timer1
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(712, 55);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(34, 21);
-            this.textBox1.TabIndex = 24;
-            this.textBox1.Text = "3";
             // 
             // dgvData
             // 
@@ -467,7 +466,6 @@
             this.colisOwegoods,
             this.colisWrong,
             this.colprice,
-            this.colrealNum,
             this.colorderDate,
             this.colsendDate,
             this.colu_ID,
@@ -576,7 +574,7 @@
             // 
             // colWeight
             // 
-            this.colWeight.DataPropertyName = "Weight";
+            this.colWeight.DataPropertyName = "Real_Num";
             this.colWeight.HeaderText = "重量";
             this.colWeight.Name = "colWeight";
             // 
@@ -628,13 +626,6 @@
             this.colprice.HeaderText = "Price";
             this.colprice.Name = "colprice";
             this.colprice.Visible = false;
-            // 
-            // colrealNum
-            // 
-            this.colrealNum.DataPropertyName = "Real_Num";
-            this.colrealNum.HeaderText = "Real_Num";
-            this.colrealNum.Name = "colrealNum";
-            this.colrealNum.Visible = false;
             // 
             // colorderDate
             // 
@@ -741,8 +732,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colchooseOrder;
         private System.Windows.Forms.DataGridViewTextBoxColumn colkNum;
         private System.Windows.Forms.DataGridViewTextBoxColumn colnum;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colremark;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colWeight;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colremark;        
         private System.Windows.Forms.DataGridViewButtonColumn colAction;
         private System.Windows.Forms.DataGridViewButtonColumn colOwd;
         private System.Windows.Forms.DataGridViewTextBoxColumn colpID;
@@ -750,7 +740,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colisOwegoods;
         private System.Windows.Forms.DataGridViewTextBoxColumn colisWrong;
         private System.Windows.Forms.DataGridViewTextBoxColumn colprice;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colrealNum;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colWeight;
         private System.Windows.Forms.DataGridViewTextBoxColumn colorderDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn colsendDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn colu_ID;

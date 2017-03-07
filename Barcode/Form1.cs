@@ -50,7 +50,7 @@ namespace Barcode
             LoadChooser();
             InitDDL();
             LoadDevice();
-            timer1.Interval = Convert.ToInt32(textBox1.Text);
+            timer1.Interval = Convert.ToInt32(textBox1.Text) * 1000;
 
             ucPagerEx1.InitPageInfo(0, 20);
             ucPagerEx1.PageChanged += ucPagerEx1_PageChanged;
@@ -326,11 +326,17 @@ namespace Barcode
                 {
                     chooseDataBindingSource.DataSource = value;
                     dgvData.Refresh();
+                    foreach (DataGridViewRow row in dgvData.Rows)
+                    {
+                        if(row.Cells[colisOwegoods.Name].Value.ToString() == "1")
+                            row.DefaultCellStyle.BackColor = System.Drawing.Color.Yellow;
+                    }                    
+
                     foreach(DataGridViewRow row in dgvData.SelectedRows)
                     {
                         row.Selected = false;
                     }
-                    if(dgvData.Rows.Count > 0)                    
+                    if(dgvData.Rows.Count > 0)
                         dgvData.Rows[0].Selected = true;
                 }
             }
@@ -343,6 +349,7 @@ namespace Barcode
         private void btnSearch_Click(object sender, EventArgs e)
         {
             LoadData(1);
+            timer1.Enabled = true;
         }
 
         private void LoadData(int page)
@@ -378,7 +385,7 @@ namespace Barcode
             {
                 if (Print(weight))
                 {
-                    CurrentData.Weight = weight;
+                    CurrentData.Real_Num = weight;
                     var postdata = string.Format("token={0}&sessionId={1}&num={2}&id={3}", token, User.SessionID, weight, CurrentData.ID);
                     var htmlstr = Html.Post(str_api + str_SaveAndPrint, postdata);
                     var result = JsonConvert.DeserializeObject<Result>(htmlstr);
@@ -596,8 +603,7 @@ namespace Barcode
         public string Remark { get; set; }
         public string Unit { get; set; }
         public string K_Num { get; set; }
-        public string Chooser_ID { get; set; }
-        public string Weight { get; set; }
+        public string Chooser_ID { get; set; }        
         public string Action { get { return "保存打印"; } }
         public string Owd { get { return "欠货"; } }
     }
