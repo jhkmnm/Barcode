@@ -522,8 +522,11 @@ namespace Barcode
                 var chooserdata = Search(ucPagerEx1.PageIndex);
                 chooserdata.Data.ForEach(i => {
                     var item = ChooseDataList.Find(w => w.ID == i.ID);
-                    item.Is_Owegoods = i.Is_Owegoods;
-                    item.Real_Num = i.Real_Num;
+                    if(item != null)
+                    {
+                        item.Is_Owegoods = i.Is_Owegoods;
+                        item.Real_Num = i.Real_Num;
+                    }                    
                 });
                 dgvData.Refresh();
             }
