@@ -52,7 +52,7 @@ namespace Barcode
             LoadDevice();
             timer1.Interval = Convert.ToInt32(textBox1.Text) * 1000;
 
-            ucPagerEx1.InitPageInfo(0, 20);
+            ucPagerEx1.InitPageInfo(0, 10);
             ucPagerEx1.PageChanged += ucPagerEx1_PageChanged;
         }
 
@@ -514,21 +514,19 @@ namespace Barcode
             #endregion
         }
 
-        private void dgvData_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
-        {
-            
-        }
-
-        private void textIntegerOnly1_KeyPress(object sender, KeyPressEventArgs e)
-        {
-           
-        }
-
         private void timer1_Tick(object sender, EventArgs e)
         {
             timer1.Enabled = false;
             if(!isPrint)
-                LoadData(ucPagerEx1.PageIndex);
+            {
+                var chooserdata = Search(ucPagerEx1.PageIndex);
+                chooserdata.Data.ForEach(i => {
+                    var item = ChooseDataList.Find(w => w.ID == i.ID);
+                    item.Is_Owegoods = i.Is_Owegoods;
+                    item.Real_Num = i.Real_Num;
+                });
+                dgvData.Refresh();
+            }
             timer1.Enabled = true;
         }
     }

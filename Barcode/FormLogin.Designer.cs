@@ -45,31 +45,40 @@
             // 
             // ddlProvince
             // 
+            this.ddlProvince.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
             this.ddlProvince.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ddlProvince.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.ddlProvince.FormattingEnabled = true;
             this.ddlProvince.Location = new System.Drawing.Point(129, 18);
             this.ddlProvince.Name = "ddlProvince";
-            this.ddlProvince.Size = new System.Drawing.Size(121, 20);
+            this.ddlProvince.Size = new System.Drawing.Size(121, 27);
             this.ddlProvince.TabIndex = 0;
+            this.ddlProvince.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.comboBox_DrawItem);
             // 
             // ddlCity
             // 
+            this.ddlCity.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
             this.ddlCity.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ddlCity.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.ddlCity.FormattingEnabled = true;
             this.ddlCity.Location = new System.Drawing.Point(129, 50);
             this.ddlCity.Name = "ddlCity";
-            this.ddlCity.Size = new System.Drawing.Size(121, 20);
+            this.ddlCity.Size = new System.Drawing.Size(121, 27);
             this.ddlCity.TabIndex = 1;
+            this.ddlCity.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.comboBox_DrawItem);
             this.ddlCity.SelectedIndexChanged += new System.EventHandler(this.ddlCity_SelectedIndexChanged);
             // 
             // ddlDistrict
             // 
+            this.ddlDistrict.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
             this.ddlDistrict.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ddlDistrict.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.ddlDistrict.FormattingEnabled = true;
             this.ddlDistrict.Location = new System.Drawing.Point(129, 82);
             this.ddlDistrict.Name = "ddlDistrict";
-            this.ddlDistrict.Size = new System.Drawing.Size(121, 20);
+            this.ddlDistrict.Size = new System.Drawing.Size(121, 27);
             this.ddlDistrict.TabIndex = 2;
+            this.ddlDistrict.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.comboBox_DrawItem);
             // 
             // txtUserName
             // 

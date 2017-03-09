@@ -148,11 +148,21 @@ namespace Barcode
             WshShell shell = new WshShell();
             IWshShortcut shortcut = (IWshShortcut)shell.CreateShortcut(DesktopPath + "\\" + strFileName + ".lnk");
             shortcut.TargetPath = System.Reflection.Assembly.GetExecutingAssembly().Location;
-            shortcut.Arguments = "";// 参数
-            //shortcut.Description = "我用C#创建的快捷方式";
+            shortcut.Arguments = "";// 参数            
             shortcut.WorkingDirectory = System.Environment.CurrentDirectory;
             shortcut.WindowStyle = 1;
             shortcut.Save();
+        }
+
+        private void comboBox_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            var com = (ComboBox)sender;
+            if (com.Items.Count == 0) return;
+            e.DrawBackground();            
+            Font ft = new Font("宋体", 14f);
+            string str = ((Region)com.Items[e.Index]).region_name;
+            e.Graphics.DrawString(str, ft, new SolidBrush(e.ForeColor), e.Bounds.X, e.Bounds.Y + 3);
+            e.DrawFocusRectangle();
         }
     }
 }
