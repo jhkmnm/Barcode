@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.ddlChooser = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -49,14 +49,10 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
             this.btnSearch = new System.Windows.Forms.Button();
-            this.txtTop = new Utilities.UserControls.TextIntegerOnly();
-            this.txtDown = new Utilities.UserControls.TextIntegerOnly();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
-            this.txtWeight_2 = new Utilities.UserControls.TextIntegerOnly();
             this.label11 = new System.Windows.Forms.Label();
-            this.txtWeight_1 = new Utilities.UserControls.TextIntegerOnly();
             this.label10 = new System.Windows.Forms.Label();
             this.btnTest = new System.Windows.Forms.Button();
             this.ddlPageSize = new System.Windows.Forms.ComboBox();
@@ -65,8 +61,12 @@
             this.label8 = new System.Windows.Forms.Label();
             this.ddlPrinter = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.ucPagerEx1 = new Utilities.UserControls.UcPagerEx();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.txtWeight_2 = new Utilities.UserControls.TextIntegerOnly();
+            this.txtWeight_1 = new Utilities.UserControls.TextIntegerOnly();
+            this.txtTop = new Utilities.UserControls.TextIntegerOnly();
+            this.txtDown = new Utilities.UserControls.TextIntegerOnly();
+            this.ucPagerEx1 = new Utilities.UserControls.UcPagerEx();
             this.dgvData = new RowMergeView();
             this.colID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.coloID = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -101,10 +101,11 @@
             // ddlChooser
             // 
             this.ddlChooser.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ddlChooser.Font = new System.Drawing.Font("宋体", 18F);
             this.ddlChooser.FormattingEnabled = true;
-            this.ddlChooser.Location = new System.Drawing.Point(78, 20);
+            this.ddlChooser.Location = new System.Drawing.Point(78, 17);
             this.ddlChooser.Name = "ddlChooser";
-            this.ddlChooser.Size = new System.Drawing.Size(121, 20);
+            this.ddlChooser.Size = new System.Drawing.Size(121, 32);
             this.ddlChooser.TabIndex = 8;
             // 
             // label1
@@ -119,7 +120,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(242, 26);
+            this.label2.Location = new System.Drawing.Point(224, 26);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(83, 12);
             this.label2.TabIndex = 12;
@@ -128,7 +129,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(525, 26);
+            this.label3.Location = new System.Drawing.Point(494, 29);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(59, 12);
             this.label3.TabIndex = 13;
@@ -138,17 +139,18 @@
             // 
             this.dtpSendDate.Checked = false;
             this.dtpSendDate.CustomFormat = "yyyy-MM-dd";
+            this.dtpSendDate.Font = new System.Drawing.Font("宋体", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.dtpSendDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpSendDate.Location = new System.Drawing.Point(590, 21);
+            this.dtpSendDate.Location = new System.Drawing.Point(559, 21);
             this.dtpSendDate.Name = "dtpSendDate";
             this.dtpSendDate.ShowCheckBox = true;
-            this.dtpSendDate.Size = new System.Drawing.Size(102, 21);
+            this.dtpSendDate.Size = new System.Drawing.Size(168, 31);
             this.dtpSendDate.TabIndex = 14;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(13, 58);
+            this.label4.Location = new System.Drawing.Point(13, 66);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(59, 12);
             this.label4.TabIndex = 16;
@@ -157,16 +159,17 @@
             // ddlIsAssign
             // 
             this.ddlIsAssign.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ddlIsAssign.Font = new System.Drawing.Font("宋体", 18F);
             this.ddlIsAssign.FormattingEnabled = true;
-            this.ddlIsAssign.Location = new System.Drawing.Point(78, 54);
+            this.ddlIsAssign.Location = new System.Drawing.Point(78, 60);
             this.ddlIsAssign.Name = "ddlIsAssign";
-            this.ddlIsAssign.Size = new System.Drawing.Size(121, 20);
+            this.ddlIsAssign.Size = new System.Drawing.Size(121, 32);
             this.ddlIsAssign.TabIndex = 15;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(265, 59);
+            this.label5.Location = new System.Drawing.Point(247, 65);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(59, 12);
             this.label5.TabIndex = 18;
@@ -175,16 +178,17 @@
             // ddlIswrong
             // 
             this.ddlIswrong.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ddlIswrong.Font = new System.Drawing.Font("宋体", 18F);
             this.ddlIswrong.FormattingEnabled = true;
-            this.ddlIswrong.Location = new System.Drawing.Point(330, 55);
+            this.ddlIswrong.Location = new System.Drawing.Point(312, 61);
             this.ddlIswrong.Name = "ddlIswrong";
-            this.ddlIswrong.Size = new System.Drawing.Size(121, 20);
+            this.ddlIswrong.Size = new System.Drawing.Size(121, 32);
             this.ddlIswrong.TabIndex = 17;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(525, 58);
+            this.label6.Location = new System.Drawing.Point(494, 66);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(59, 12);
             this.label6.TabIndex = 20;
@@ -193,10 +197,11 @@
             // ddlIsowegoods
             // 
             this.ddlIsowegoods.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ddlIsowegoods.Font = new System.Drawing.Font("宋体", 18F);
             this.ddlIsowegoods.FormattingEnabled = true;
-            this.ddlIsowegoods.Location = new System.Drawing.Point(590, 54);
+            this.ddlIsowegoods.Location = new System.Drawing.Point(559, 60);
             this.ddlIsowegoods.Name = "ddlIsowegoods";
-            this.ddlIsowegoods.Size = new System.Drawing.Size(102, 20);
+            this.ddlIsowegoods.Size = new System.Drawing.Size(102, 32);
             this.ddlIsowegoods.TabIndex = 19;
             // 
             // groupBox1
@@ -221,14 +226,14 @@
             this.groupBox1.Controls.Add(this.dtpSendDate);
             this.groupBox1.Location = new System.Drawing.Point(6, 2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(825, 87);
+            this.groupBox1.Size = new System.Drawing.Size(825, 99);
             this.groupBox1.TabIndex = 21;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "查询";
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(712, 55);
+            this.textBox1.Location = new System.Drawing.Point(712, 61);
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
             this.textBox1.Size = new System.Drawing.Size(34, 21);
@@ -238,7 +243,7 @@
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(752, 59);
+            this.label14.Location = new System.Drawing.Point(752, 65);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(65, 12);
             this.label14.TabIndex = 23;
@@ -246,39 +251,22 @@
             // 
             // btnSearch
             // 
-            this.btnSearch.Location = new System.Drawing.Point(712, 21);
+            this.btnSearch.Font = new System.Drawing.Font("宋体", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnSearch.Location = new System.Drawing.Point(742, 21);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(75, 22);
+            this.btnSearch.Size = new System.Drawing.Size(75, 30);
             this.btnSearch.TabIndex = 21;
             this.btnSearch.Text = "查询";
             this.btnSearch.UseVisualStyleBackColor = true;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
-            // txtTop
-            // 
-            this.txtTop.IsDecimal = false;
-            this.txtTop.IsNegativeNumbers = false;
-            this.txtTop.Location = new System.Drawing.Point(331, 21);
-            this.txtTop.Name = "txtTop";
-            this.txtTop.Size = new System.Drawing.Size(69, 21);
-            this.txtTop.TabIndex = 9;
-            // 
-            // txtDown
-            // 
-            this.txtDown.IsDecimal = false;
-            this.txtDown.IsNegativeNumbers = false;
-            this.txtDown.Location = new System.Drawing.Point(408, 21);
-            this.txtDown.Name = "txtDown";
-            this.txtDown.Size = new System.Drawing.Size(67, 21);
-            this.txtDown.TabIndex = 10;
-            // 
             // groupBox2
             // 
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox2.Controls.Add(this.txtWeight_2);
             this.groupBox2.Controls.Add(this.label13);
             this.groupBox2.Controls.Add(this.label12);
-            this.groupBox2.Controls.Add(this.txtWeight_2);
             this.groupBox2.Controls.Add(this.label11);
             this.groupBox2.Controls.Add(this.txtWeight_1);
             this.groupBox2.Controls.Add(this.label10);
@@ -289,9 +277,9 @@
             this.groupBox2.Controls.Add(this.label8);
             this.groupBox2.Controls.Add(this.ddlPrinter);
             this.groupBox2.Controls.Add(this.label7);
-            this.groupBox2.Location = new System.Drawing.Point(6, 89);
+            this.groupBox2.Location = new System.Drawing.Point(6, 107);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(825, 100);
+            this.groupBox2.Size = new System.Drawing.Size(825, 87);
             this.groupBox2.TabIndex = 22;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "打印";
@@ -299,7 +287,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(645, 65);
+            this.label13.Location = new System.Drawing.Point(672, 58);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(17, 12);
             this.label13.TabIndex = 30;
@@ -308,43 +296,25 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(458, 65);
+            this.label12.Location = new System.Drawing.Point(493, 60);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(17, 12);
             this.label12.TabIndex = 29;
             this.label12.Text = "斤";
             // 
-            // txtWeight_2
-            // 
-            this.txtWeight_2.IsDecimal = true;
-            this.txtWeight_2.IsNegativeNumbers = false;
-            this.txtWeight_2.Location = new System.Drawing.Point(574, 61);
-            this.txtWeight_2.Name = "txtWeight_2";
-            this.txtWeight_2.Size = new System.Drawing.Size(69, 21);
-            this.txtWeight_2.TabIndex = 27;
-            // 
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(509, 65);
+            this.label11.Location = new System.Drawing.Point(524, 58);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(59, 12);
             this.label11.TabIndex = 28;
             this.label11.Text = "手动数值:";
             // 
-            // txtWeight_1
-            // 
-            this.txtWeight_1.IsDecimal = true;
-            this.txtWeight_1.IsNegativeNumbers = false;
-            this.txtWeight_1.Location = new System.Drawing.Point(387, 61);
-            this.txtWeight_1.Name = "txtWeight_1";
-            this.txtWeight_1.Size = new System.Drawing.Size(69, 21);
-            this.txtWeight_1.TabIndex = 22;
-            // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(322, 65);
+            this.label10.Location = new System.Drawing.Point(322, 58);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(59, 12);
             this.label10.TabIndex = 23;
@@ -352,9 +322,10 @@
             // 
             // btnTest
             // 
-            this.btnTest.Location = new System.Drawing.Point(220, 60);
+            this.btnTest.Font = new System.Drawing.Font("宋体", 15.75F);
+            this.btnTest.Location = new System.Drawing.Point(232, 53);
             this.btnTest.Name = "btnTest";
-            this.btnTest.Size = new System.Drawing.Size(75, 23);
+            this.btnTest.Size = new System.Drawing.Size(75, 30);
             this.btnTest.TabIndex = 23;
             this.btnTest.Text = "测试端口";
             this.btnTest.UseVisualStyleBackColor = true;
@@ -363,17 +334,18 @@
             // ddlPageSize
             // 
             this.ddlPageSize.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ddlPageSize.Font = new System.Drawing.Font("宋体", 18F);
             this.ddlPageSize.FormattingEnabled = true;
-            this.ddlPageSize.Location = new System.Drawing.Point(387, 24);
+            this.ddlPageSize.Location = new System.Drawing.Point(384, 16);
             this.ddlPageSize.Name = "ddlPageSize";
-            this.ddlPageSize.Size = new System.Drawing.Size(99, 20);
+            this.ddlPageSize.Size = new System.Drawing.Size(102, 32);
             this.ddlPageSize.TabIndex = 25;
             this.ddlPageSize.SelectedIndexChanged += new System.EventHandler(this.ddlPageSize_SelectedIndexChanged);
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(346, 28);
+            this.label9.Location = new System.Drawing.Point(346, 20);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(35, 12);
             this.label9.TabIndex = 26;
@@ -382,16 +354,17 @@
             // ddlProt
             // 
             this.ddlProt.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ddlProt.Font = new System.Drawing.Font("宋体", 18F);
             this.ddlProt.FormattingEnabled = true;
-            this.ddlProt.Location = new System.Drawing.Point(89, 61);
+            this.ddlProt.Location = new System.Drawing.Point(89, 51);
             this.ddlProt.Name = "ddlProt";
-            this.ddlProt.Size = new System.Drawing.Size(99, 20);
+            this.ddlProt.Size = new System.Drawing.Size(118, 32);
             this.ddlProt.TabIndex = 23;
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(12, 65);
+            this.label8.Location = new System.Drawing.Point(12, 58);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(71, 12);
             this.label8.TabIndex = 24;
@@ -400,36 +373,83 @@
             // ddlPrinter
             // 
             this.ddlPrinter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ddlPrinter.Font = new System.Drawing.Font("宋体", 18F);
             this.ddlPrinter.FormattingEnabled = true;
-            this.ddlPrinter.Location = new System.Drawing.Point(89, 24);
+            this.ddlPrinter.Location = new System.Drawing.Point(89, 16);
             this.ddlPrinter.Name = "ddlPrinter";
-            this.ddlPrinter.Size = new System.Drawing.Size(206, 20);
+            this.ddlPrinter.Size = new System.Drawing.Size(218, 32);
             this.ddlPrinter.TabIndex = 22;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(36, 28);
+            this.label7.Location = new System.Drawing.Point(36, 20);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(47, 12);
             this.label7.TabIndex = 22;
             this.label7.Text = "打印机:";
             // 
+            // timer1
+            // 
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // txtWeight_2
+            // 
+            this.txtWeight_2.Font = new System.Drawing.Font("宋体", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.txtWeight_2.IsDecimal = false;
+            this.txtWeight_2.IsNegativeNumbers = false;
+            this.txtWeight_2.Location = new System.Drawing.Point(584, 48);
+            this.txtWeight_2.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
+            this.txtWeight_2.Name = "txtWeight_2";
+            this.txtWeight_2.Size = new System.Drawing.Size(87, 35);
+            this.txtWeight_2.TabIndex = 31;
+            // 
+            // txtWeight_1
+            // 
+            this.txtWeight_1.Font = new System.Drawing.Font("宋体", 15.75F);
+            this.txtWeight_1.IsDecimal = true;
+            this.txtWeight_1.IsNegativeNumbers = false;
+            this.txtWeight_1.Location = new System.Drawing.Point(384, 50);
+            this.txtWeight_1.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
+            this.txtWeight_1.Name = "txtWeight_1";
+            this.txtWeight_1.Size = new System.Drawing.Size(112, 33);
+            this.txtWeight_1.TabIndex = 22;
+            // 
+            // txtTop
+            // 
+            this.txtTop.Font = new System.Drawing.Font("宋体", 15.75F);
+            this.txtTop.IsDecimal = false;
+            this.txtTop.IsNegativeNumbers = false;
+            this.txtTop.Location = new System.Drawing.Point(313, 18);
+            this.txtTop.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
+            this.txtTop.Name = "txtTop";
+            this.txtTop.Size = new System.Drawing.Size(67, 33);
+            this.txtTop.TabIndex = 9;
+            // 
+            // txtDown
+            // 
+            this.txtDown.Font = new System.Drawing.Font("宋体", 15.75F);
+            this.txtDown.IsDecimal = false;
+            this.txtDown.IsNegativeNumbers = false;
+            this.txtDown.Location = new System.Drawing.Point(387, 18);
+            this.txtDown.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
+            this.txtDown.Name = "txtDown";
+            this.txtDown.Size = new System.Drawing.Size(69, 33);
+            this.txtDown.TabIndex = 10;
+            // 
             // ucPagerEx1
             // 
             this.ucPagerEx1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.ucPagerEx1.Location = new System.Drawing.Point(211, 588);
+            this.ucPagerEx1.Font = new System.Drawing.Font("宋体", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.ucPagerEx1.Location = new System.Drawing.Point(34, 586);
+            this.ucPagerEx1.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.ucPagerEx1.Name = "ucPagerEx1";
             this.ucPagerEx1.PageIndex = 1;
             this.ucPagerEx1.PageSize = 15;
             this.ucPagerEx1.PreviousPage = 0;
             this.ucPagerEx1.RecordCount = 0;
-            this.ucPagerEx1.Size = new System.Drawing.Size(417, 30);
+            this.ucPagerEx1.Size = new System.Drawing.Size(769, 51);
             this.ucPagerEx1.TabIndex = 23;
-            // 
-            // timer1
-            // 
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // dgvData
             // 
@@ -439,14 +459,14 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvData.AutoGenerateColumns = false;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("宋体", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvData.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("宋体", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvData.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.dgvData.ColumnHeadersHeight = 41;
             this.dgvData.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colID,
@@ -473,33 +493,33 @@
             this.coluid,
             this.colchooserID});
             this.dgvData.DataSource = this.chooseDataBindingSource;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvData.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvData.DefaultCellStyle = dataGridViewCellStyle6;
             this.dgvData.Location = new System.Drawing.Point(6, 202);
             this.dgvData.MergeColumnHeaderBackColor = System.Drawing.SystemColors.Control;
             this.dgvData.MergeColumnNames = ((System.Collections.Generic.List<string>)(resources.GetObject("dgvData.MergeColumnNames")));
             this.dgvData.Name = "dgvData";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("宋体", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvData.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("宋体", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvData.RowHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.dgvData.RowHeadersWidth = 21;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("宋体", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.dgvData.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("宋体", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.dgvData.RowsDefaultCellStyle = dataGridViewCellStyle8;
             this.dgvData.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.dgvData.RowTemplate.Height = 55;
             this.dgvData.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvData.Size = new System.Drawing.Size(825, 380);
+            this.dgvData.Size = new System.Drawing.Size(825, 394);
             this.dgvData.TabIndex = 7;
             this.dgvData.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvData_CellContentClick);
             this.dgvData.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.dgvData_CellPainting);
@@ -674,11 +694,11 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(840, 621);
-            this.Controls.Add(this.ucPagerEx1);
+            this.ClientSize = new System.Drawing.Size(840, 649);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.dgvData);
+            this.Controls.Add(this.ucPagerEx1);
             this.Name = "Form1";
             this.Text = "称重打印";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
@@ -711,7 +731,6 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.GroupBox groupBox2;
-        private Utilities.UserControls.TextIntegerOnly txtWeight_2;
         private System.Windows.Forms.Label label11;
         private Utilities.UserControls.TextIntegerOnly txtWeight_1;
         private System.Windows.Forms.Label label10;
@@ -752,6 +771,7 @@
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.TextBox textBox1;
+        private Utilities.UserControls.TextIntegerOnly txtWeight_2;
     }
 }
 

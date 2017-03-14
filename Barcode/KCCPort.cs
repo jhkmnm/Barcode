@@ -70,7 +70,6 @@ namespace Barcode
             {
                 return false;
             }
-
         }
 
         private string ExtractWeight(string str)

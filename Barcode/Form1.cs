@@ -14,6 +14,8 @@ using System.ComponentModel;
 using Microsoft.Win32;
 using CrystalDecisions.CrystalReports.Engine;
 using System.Drawing;
+using log4net.Config;
+using log4net;
 
 namespace Barcode
 {
@@ -35,13 +37,15 @@ namespace Barcode
         bool on_off = false;
         bool stop = false;
         bool isPrint = false;
+        ILog logger;
 
         public Form1()
         {
             this.WindowState = FormWindowState.Maximized;
             InitializeComponent();
-
-            foreach(DataGridViewColumn col in dgvData.Columns)
+            InitLog4Net();
+            logger = LogManager.GetLogger(typeof(Form1));
+            foreach (DataGridViewColumn col in dgvData.Columns)
             {
                 if (col.Name != colremark.Name && col.Name != colWeight.Name && col.Name != colOwd.Name)
                     col.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
@@ -256,7 +260,6 @@ namespace Barcode
                         Invoke(new Action(() =>
                         {
                             txtWeight_1.Text = ExtractWeight(weight);
-                            //textBox1.Text += ExtractWeight(weight) + Environment.NewLine;
                         }));
                     }
                     catch { }
@@ -268,9 +271,10 @@ namespace Barcode
 
         private string ExtractWeight(string str)
         {
+            logger.Info("读取:"+str);
             var weights = str.Split('\r');
             string weight = "";
-            Regex reg = new Regex(@"\d+\.?\d*");
+            Regex reg = new Regex(@"\d+\.+\d*");
             
             for(int i= weights.Length-1;i>=0;i--)
             {
@@ -278,10 +282,11 @@ namespace Barcode
                 {
                     var match = reg.Match(weights[i]);
                     weight = match.Value;
+                    logger.Info("解析"+weight);
                 }
             }
 
-            return (Convert.ToDecimal(weight) * 2).ToString();            
+            return (Convert.ToDecimal(weight) * 2).ToString();
         }
 
         private void btnTest_Click(object sender, EventArgs e)
@@ -531,6 +536,12 @@ namespace Barcode
                 dgvData.Refresh();
             }
             timer1.Enabled = true;
+        }
+
+        private static void InitLog4Net()
+        {
+            var logCfg = new FileInfo(AppDomain.CurrentDomain.BaseDirectory + "log4net.config");
+            XmlConfigurator.ConfigureAndWatch(logCfg);
         }
     }
 
