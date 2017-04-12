@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormLogin));
             this.ddlProvince = new System.Windows.Forms.ComboBox();
             this.ddlCity = new System.Windows.Forms.ComboBox();
             this.ddlDistrict = new System.Windows.Forms.ComboBox();
@@ -198,6 +199,7 @@
             this.Controls.Add(this.ddlDistrict);
             this.Controls.Add(this.ddlCity);
             this.Controls.Add(this.ddlProvince);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FormLogin";

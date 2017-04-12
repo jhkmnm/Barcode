@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.ddlChooser = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -49,10 +49,14 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
             this.btnSearch = new System.Windows.Forms.Button();
+            this.txtTop = new Utilities.UserControls.TextIntegerOnly();
+            this.txtDown = new Utilities.UserControls.TextIntegerOnly();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.txtWeight_2 = new Utilities.UserControls.TextIntegerOnly();
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
+            this.txtWeight_1 = new Utilities.UserControls.TextIntegerOnly();
             this.label10 = new System.Windows.Forms.Label();
             this.btnTest = new System.Windows.Forms.Button();
             this.ddlPageSize = new System.Windows.Forms.ComboBox();
@@ -62,13 +66,10 @@
             this.ddlPrinter = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.txtWeight_2 = new Utilities.UserControls.TextIntegerOnly();
-            this.txtWeight_1 = new Utilities.UserControls.TextIntegerOnly();
-            this.txtTop = new Utilities.UserControls.TextIntegerOnly();
-            this.txtDown = new Utilities.UserControls.TextIntegerOnly();
             this.ucPagerEx1 = new Utilities.UserControls.UcPagerEx();
             this.dgvData = new RowMergeView();
             this.colID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colbalance_color = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.coloID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colsendOrder = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colcName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -260,6 +261,28 @@
             this.btnSearch.UseVisualStyleBackColor = true;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
+            // txtTop
+            // 
+            this.txtTop.Font = new System.Drawing.Font("宋体", 15.75F);
+            this.txtTop.IsDecimal = false;
+            this.txtTop.IsNegativeNumbers = false;
+            this.txtTop.Location = new System.Drawing.Point(313, 18);
+            this.txtTop.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
+            this.txtTop.Name = "txtTop";
+            this.txtTop.Size = new System.Drawing.Size(67, 33);
+            this.txtTop.TabIndex = 9;
+            // 
+            // txtDown
+            // 
+            this.txtDown.Font = new System.Drawing.Font("宋体", 15.75F);
+            this.txtDown.IsDecimal = false;
+            this.txtDown.IsNegativeNumbers = false;
+            this.txtDown.Location = new System.Drawing.Point(387, 18);
+            this.txtDown.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
+            this.txtDown.Name = "txtDown";
+            this.txtDown.Size = new System.Drawing.Size(69, 33);
+            this.txtDown.TabIndex = 10;
+            // 
             // groupBox2
             // 
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -283,6 +306,17 @@
             this.groupBox2.TabIndex = 22;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "打印";
+            // 
+            // txtWeight_2
+            // 
+            this.txtWeight_2.Font = new System.Drawing.Font("宋体", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.txtWeight_2.IsDecimal = true;
+            this.txtWeight_2.IsNegativeNumbers = false;
+            this.txtWeight_2.Location = new System.Drawing.Point(584, 48);
+            this.txtWeight_2.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
+            this.txtWeight_2.Name = "txtWeight_2";
+            this.txtWeight_2.Size = new System.Drawing.Size(87, 35);
+            this.txtWeight_2.TabIndex = 31;
             // 
             // label13
             // 
@@ -310,6 +344,17 @@
             this.label11.Size = new System.Drawing.Size(59, 12);
             this.label11.TabIndex = 28;
             this.label11.Text = "手动数值:";
+            // 
+            // txtWeight_1
+            // 
+            this.txtWeight_1.Font = new System.Drawing.Font("宋体", 15.75F);
+            this.txtWeight_1.IsDecimal = true;
+            this.txtWeight_1.IsNegativeNumbers = false;
+            this.txtWeight_1.Location = new System.Drawing.Point(384, 50);
+            this.txtWeight_1.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
+            this.txtWeight_1.Name = "txtWeight_1";
+            this.txtWeight_1.Size = new System.Drawing.Size(112, 33);
+            this.txtWeight_1.TabIndex = 22;
             // 
             // label10
             // 
@@ -393,50 +438,6 @@
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // txtWeight_2
-            // 
-            this.txtWeight_2.Font = new System.Drawing.Font("宋体", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.txtWeight_2.IsDecimal = false;
-            this.txtWeight_2.IsNegativeNumbers = false;
-            this.txtWeight_2.Location = new System.Drawing.Point(584, 48);
-            this.txtWeight_2.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
-            this.txtWeight_2.Name = "txtWeight_2";
-            this.txtWeight_2.Size = new System.Drawing.Size(87, 35);
-            this.txtWeight_2.TabIndex = 31;
-            // 
-            // txtWeight_1
-            // 
-            this.txtWeight_1.Font = new System.Drawing.Font("宋体", 15.75F);
-            this.txtWeight_1.IsDecimal = true;
-            this.txtWeight_1.IsNegativeNumbers = false;
-            this.txtWeight_1.Location = new System.Drawing.Point(384, 50);
-            this.txtWeight_1.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
-            this.txtWeight_1.Name = "txtWeight_1";
-            this.txtWeight_1.Size = new System.Drawing.Size(112, 33);
-            this.txtWeight_1.TabIndex = 22;
-            // 
-            // txtTop
-            // 
-            this.txtTop.Font = new System.Drawing.Font("宋体", 15.75F);
-            this.txtTop.IsDecimal = false;
-            this.txtTop.IsNegativeNumbers = false;
-            this.txtTop.Location = new System.Drawing.Point(313, 18);
-            this.txtTop.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
-            this.txtTop.Name = "txtTop";
-            this.txtTop.Size = new System.Drawing.Size(67, 33);
-            this.txtTop.TabIndex = 9;
-            // 
-            // txtDown
-            // 
-            this.txtDown.Font = new System.Drawing.Font("宋体", 15.75F);
-            this.txtDown.IsDecimal = false;
-            this.txtDown.IsNegativeNumbers = false;
-            this.txtDown.Location = new System.Drawing.Point(387, 18);
-            this.txtDown.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
-            this.txtDown.Name = "txtDown";
-            this.txtDown.Size = new System.Drawing.Size(69, 33);
-            this.txtDown.TabIndex = 10;
-            // 
             // ucPagerEx1
             // 
             this.ucPagerEx1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -448,7 +449,7 @@
             this.ucPagerEx1.PageSize = 15;
             this.ucPagerEx1.PreviousPage = 0;
             this.ucPagerEx1.RecordCount = 0;
-            this.ucPagerEx1.Size = new System.Drawing.Size(769, 51);
+            this.ucPagerEx1.Size = new System.Drawing.Size(769, 61);
             this.ucPagerEx1.TabIndex = 23;
             // 
             // dgvData
@@ -459,17 +460,19 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvData.AutoGenerateColumns = false;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("宋体", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvData.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            this.dgvData.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("宋体", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvData.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvData.ColumnHeadersHeight = 41;
             this.dgvData.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colID,
+            this.colbalance_color,
             this.coloID,
             this.colsendOrder,
             this.colcName,
@@ -493,31 +496,31 @@
             this.coluid,
             this.colchooserID});
             this.dgvData.DataSource = this.chooseDataBindingSource;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvData.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvData.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgvData.Location = new System.Drawing.Point(6, 202);
             this.dgvData.MergeColumnHeaderBackColor = System.Drawing.SystemColors.Control;
             this.dgvData.MergeColumnNames = ((System.Collections.Generic.List<string>)(resources.GetObject("dgvData.MergeColumnNames")));
             this.dgvData.Name = "dgvData";
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("宋体", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvData.RowHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("宋体", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvData.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvData.RowHeadersWidth = 21;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("宋体", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.dgvData.RowsDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("宋体", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.dgvData.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvData.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.dgvData.RowTemplate.Height = 55;
+            this.dgvData.RowTemplate.Height = 100;
             this.dgvData.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvData.Size = new System.Drawing.Size(825, 394);
             this.dgvData.TabIndex = 7;
@@ -530,6 +533,13 @@
             this.colID.HeaderText = "ID";
             this.colID.Name = "colID";
             this.colID.Visible = false;
+            // 
+            // colbalance_color
+            // 
+            this.colbalance_color.DataPropertyName = "balance_color";
+            this.colbalance_color.HeaderText = "balance_color";
+            this.colbalance_color.Name = "colbalance_color";
+            this.colbalance_color.Visible = false;
             // 
             // coloID
             // 
@@ -557,14 +567,14 @@
             this.colname.DataPropertyName = "Name";
             this.colname.HeaderText = "商品名称";
             this.colname.Name = "colname";
-            this.colname.Width = 140;
+            this.colname.Width = 120;
             // 
             // colunit
             // 
             this.colunit.DataPropertyName = "Unit";
             this.colunit.HeaderText = "单位";
             this.colunit.Name = "colunit";
-            this.colunit.Width = 60;
+            this.colunit.Width = 55;
             // 
             // colchooseOrder
             // 
@@ -699,6 +709,7 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.dgvData);
             this.Controls.Add(this.ucPagerEx1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.Text = "称重打印";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
@@ -745,7 +756,12 @@
         private Utilities.UserControls.UcPagerEx ucPagerEx1;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label12;        
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.TextBox textBox1;
+        private Utilities.UserControls.TextIntegerOnly txtWeight_2;
         private System.Windows.Forms.DataGridViewTextBoxColumn colID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colbalance_color;
         private System.Windows.Forms.DataGridViewTextBoxColumn coloID;
         private System.Windows.Forms.DataGridViewTextBoxColumn colsendOrder;
         private System.Windows.Forms.DataGridViewTextBoxColumn colcName;
@@ -754,7 +770,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colchooseOrder;
         private System.Windows.Forms.DataGridViewTextBoxColumn colkNum;
         private System.Windows.Forms.DataGridViewTextBoxColumn colnum;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colremark;        
+        private System.Windows.Forms.DataGridViewTextBoxColumn colremark;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colWeight;
         private System.Windows.Forms.DataGridViewButtonColumn colAction;
         private System.Windows.Forms.DataGridViewButtonColumn colOwd;
         private System.Windows.Forms.DataGridViewTextBoxColumn colpID;
@@ -762,16 +779,11 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colisOwegoods;
         private System.Windows.Forms.DataGridViewTextBoxColumn colisWrong;
         private System.Windows.Forms.DataGridViewTextBoxColumn colprice;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colWeight;
         private System.Windows.Forms.DataGridViewTextBoxColumn colorderDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn colsendDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn colu_ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn coluid;
         private System.Windows.Forms.DataGridViewTextBoxColumn colchooserID;
-        private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Timer timer1;
-        private System.Windows.Forms.TextBox textBox1;
-        private Utilities.UserControls.TextIntegerOnly txtWeight_2;
     }
 }
 
