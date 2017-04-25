@@ -46,12 +46,6 @@ namespace Barcode
             InitializeComponent();
             InitLog4Net();
             logger = LogManager.GetLogger(typeof(Form1));
-            //foreach (DataGridViewColumn col in dgvData.Columns)
-            //{
-            //    if (col.Name != colremark.Name && col.Name != colWeight.Name && col.Name != colOwd.Name)
-            //        col.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            //}
-
             LoadChooser();
             InitDDL();
             LoadDevice();
@@ -211,7 +205,7 @@ namespace Barcode
             logger.Info("创建打印数据完成");
             return Print(printdata);
         }
-        #endregion              
+        #endregion
 
         #region 秤
         private void GetWeightRun()
@@ -235,7 +229,8 @@ namespace Barcode
         {
             on_off = false;
             if(ma != null)
-            ma.Set();
+                ma.Set();
+            logger.Info("继续称重");
         }
         /// <summary>
         /// 停止读秤
@@ -251,16 +246,18 @@ namespace Barcode
             {
                 if (stop)
                     return;
-                if (on_off)
-                {
-                    ma = new ManualResetEvent(false);
-                    ma.WaitOne();
-                }
+                
+                //Random ran = new Random();
                 var weight = port.ProductWeight();
                 if (!string.IsNullOrWhiteSpace(weight))
                 {
                     try
                     {
+                        if (on_off)
+                        {
+                            ma = new ManualResetEvent(false);
+                            ma.WaitOne();
+                        }
                         Invoke(new Action(() =>
                         {
                             var v = ExtractWeight(weight);
@@ -271,7 +268,7 @@ namespace Barcode
                     catch { }
                 }
 
-                Thread.Sleep(500);
+                Thread.Sleep(200);
             }            
         }
 
@@ -404,13 +401,15 @@ namespace Barcode
             Utilities.DataVerifier dv = new Utilities.DataVerifier();
             dv.Check(string.IsNullOrWhiteSpace(weight), "请连接电子秤称重或手动输入重量");
             if(dv.Pass)
-            {                
+            {
+                On();
                 if (Print(weight))
                 {
                     CurrentData.Real_Num = weight;
                     var postdata = string.Format("token={0}&sessionId={1}&num={2}&id={3}", token, User.SessionID, weight, CurrentData.ID);
                     var htmlstr = Html.Post(str_api + str_SaveAndPrint, postdata);
                     var result = JsonConvert.DeserializeObject<Result>(htmlstr);
+                    CurrentData.balance_color = result.is_red.ToString();
                     dgvData.Refresh();
                     dv.Check(result.Status == "40000", result.Message);
                     logger.Info("保存重量完成");
@@ -420,7 +419,7 @@ namespace Barcode
                     return false;
                 }
             }
-
+            isPrint = false;            
             dv.ShowMsgIfFailed();
             return dv.Pass;
         }
@@ -459,9 +458,7 @@ namespace Barcode
                             dgvData.Rows[e.RowIndex].Cells[colWeight.Name].Style.BackColor = Color.Red;
                         }
                     }
-                }
-                isPrint = false;
-                On();
+                }                
             }
             else if(e.ColumnIndex == colOwd.Index)
             {
@@ -550,26 +547,31 @@ namespace Barcode
         {
             timer1.Enabled = false;
             if(!isPrint)
-            {
+            {                
                 var chooserdata = Search(ucPagerEx1.PageIndex);
-                chooserdata.Data.ForEach(i => {
-                    var item = ChooseDataList.Find(w => w.ID == i.ID);
-                    if(item != null)
-                    {
-                        item.Is_Owegoods = i.Is_Owegoods;
-                        item.Real_Num = i.Real_Num;
-                        item.balance_color = i.balance_color;
-                    }
-                });
-                dgvData.Refresh();
-                foreach (DataGridViewRow row in dgvData.Rows)
+                if (!isPrint)
                 {
-                    if (!string.IsNullOrWhiteSpace(row.Cells[colbalance_color.Name].Value.ToString()))
+                    logger.Info("自动刷新数据");
+                    chooserdata.Data.ForEach(i =>
                     {
-                        var val = row.Cells[colbalance_color.Name].Value.ToString();
-                        if (val == "1")
+                        var item = ChooseDataList.Find(w => w.ID == i.ID);
+                        if (item != null)
                         {
-                            row.Cells[colWeight.Name].Style.BackColor = Color.Red;
+                            item.Is_Owegoods = i.Is_Owegoods;
+                            item.Real_Num = i.Real_Num;
+                            item.balance_color = i.balance_color;
+                        }
+                    });
+                    dgvData.Refresh();
+                    foreach (DataGridViewRow row in dgvData.Rows)
+                    {
+                        if (!string.IsNullOrWhiteSpace(row.Cells[colbalance_color.Name].Value.ToString()))
+                        {
+                            var val = row.Cells[colbalance_color.Name].Value.ToString();
+                            if (val == "1")
+                            {
+                                row.Cells[colWeight.Name].Style.BackColor = Color.Red;
+                            }
                         }
                     }
                 }
@@ -589,6 +591,7 @@ namespace Barcode
     {
         public string Status{ get; set; }
         public string Message{ get; set; }
+        public int is_red { get; set; }
     }
 
     public class RegionResult : Result
