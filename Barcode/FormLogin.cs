@@ -20,19 +20,24 @@ namespace Barcode
         string str_city = "/getCity";
         string str_district = "/getDistrict";
         string str_login = "/login";
+        string city, district;
 
         public FormLogin()
         {
             CreateShortCut();
             this.StartPosition = FormStartPosition.CenterScreen;
             InitializeComponent();
-            LoadProvince();
-            LoadPw();
+            if (LoadProvince())
+                LoadPw();
+            else
+                MessageBox.Show("连接服务器失败");
         }
 
-        private void LoadProvince()
+        private bool LoadProvince()
         {
             var htmlstr = Html.Post(str_api + str_province, "token=" + token);
+            if (string.IsNullOrWhiteSpace(htmlstr))
+                return false;
             List<Region> province = JsonConvert.DeserializeObject<List<Region>>(htmlstr);
             province.Insert(0, new Barcode.Region { region_id = 0, region_name = "选择省" });
             ddlProvince.DataSource = province;
@@ -40,6 +45,7 @@ namespace Barcode
             ddlProvince.ValueMember = "region_id";
             ddlProvince.SelectedIndex = 0;
             ddlProvince.SelectedIndexChanged += ddlProvince_SelectedIndexChanged;
+            return true;
         }
 
         private void ddlProvince_SelectedIndexChanged(object sender, EventArgs e)
@@ -57,7 +63,10 @@ namespace Barcode
                 ddlCity.DataSource = regionresult.Data;
                 ddlCity.DisplayMember = "region_name";
                 ddlCity.ValueMember = "region_id";
-                ddlCity.SelectedIndex = 0;
+                if (string.IsNullOrWhiteSpace(city))
+                    ddlCity.SelectedIndex = 0;
+                else
+                    ddlCity.SelectedItem = ((List<Region>)ddlCity.DataSource).Find(f => f.region_id.ToString() == city);
             }
             else
             {
@@ -85,7 +94,10 @@ namespace Barcode
                 ddlDistrict.DataSource = regionresult.Data;
                 ddlDistrict.DisplayMember = "region_name";
                 ddlDistrict.ValueMember = "region_id";
-                ddlDistrict.SelectedIndex = 0;
+                if (string.IsNullOrWhiteSpace(district))
+                    ddlDistrict.SelectedIndex = 0;
+                else
+                    ddlDistrict.SelectedItem = ((List<Region>)ddlDistrict.DataSource).Find(f => f.region_id.ToString() == district);
             }
             else
             {
@@ -123,6 +135,9 @@ namespace Barcode
             Configuration configuration = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
             configuration.AppSettings.Settings["UserName"].Value = txtUserName.Text;
             configuration.AppSettings.Settings["PassWord"].Value = txtPassword.Text;
+            configuration.AppSettings.Settings["Province"].Value = ddlProvince.SelectedValue.ToString();
+            configuration.AppSettings.Settings["City"].Value = ddlCity.SelectedValue.ToString();
+            configuration.AppSettings.Settings["District"].Value = ddlDistrict.SelectedValue.ToString();
             configuration.AppSettings.Settings["chkSavePass"].Value = "True";
             configuration.Save();
         }
@@ -136,6 +151,11 @@ namespace Barcode
             {
                 txtUserName.Text = ConfigurationManager.AppSettings["UserName"];
                 txtPassword.Text = ConfigurationManager.AppSettings["PassWord"];
+                district = ConfigurationManager.AppSettings["District"];
+                city = ConfigurationManager.AppSettings["City"];
+                var v = ConfigurationManager.AppSettings["Province"];
+                if (!string.IsNullOrWhiteSpace(v))
+                    ddlProvince.SelectedItem = ((List<Region>)ddlProvince.DataSource).Find(f => f.region_id.ToString() == v);
                 chkR.Checked = true;
             }
         }

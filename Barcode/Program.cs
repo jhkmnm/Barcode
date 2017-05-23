@@ -15,12 +15,12 @@ namespace Barcode
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-
+            //Application.Run(new Num());
             FormLogin login = new FormLogin();
-            if(login.ShowDialog() == DialogResult.OK)
+            if (login.ShowDialog() == DialogResult.OK)
             {
                 Application.Run(new Form1());
-            }            
+            }
         }
     }
 }

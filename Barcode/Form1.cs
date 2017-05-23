@@ -374,21 +374,31 @@ namespace Barcode
         private void LoadData(int page)
         {
             var chooserdata = Search(page);
-            ChooseDataList = chooserdata.Data;
-            ucPagerEx1.InitPageInfo(chooserdata.Page.Total, chooserdata.Page.PageSize);
+            if (chooserdata != null)
+            {
+                ChooseDataList = chooserdata.Data;
+                ucPagerEx1.InitPageInfo(chooserdata.Page.Total, chooserdata.Page.PageSize);
+            }
         }
 
         private ChooseDataResult Search(int page)
         {
-            var postdata = string.Format("token={0}&sessionId={1}&page={9}&chooser_id={2}&send_order_top={4}&send_order_down={3}&send_date={5}&is_assig={6}&is_wrong={7}&is_owegoods={8}", token, User.SessionID, ddlChooser.SelectedValue, txtTop.Text, txtDown.Text, dtpSendDate.Checked ? dtpSendDate.Value.ToString("yyyy-MM-dd") : "", ddlIsAssign.SelectedIndex, ddlIswrong.SelectedIndex, ddlIsowegoods.SelectedIndex, page);
-            var htmlstr = Html.Post(str_api + str_ChooserData, postdata);
-            return JsonConvert.DeserializeObject<ChooseDataResult>(htmlstr);
+            try
+            {
+                var postdata = string.Format("token={0}&sessionId={1}&page={9}&chooser_id={2}&send_order_top={4}&send_order_down={3}&send_date={5}&is_assig={6}&is_wrong={7}&is_owegoods={8}", token, User.SessionID, ddlChooser.SelectedValue, txtTop.Text, txtDown.Text, dtpSendDate.Value.ToString("yyyy-MM-dd"), ddlIsAssign.SelectedIndex, ddlIswrong.SelectedIndex, ddlIsowegoods.SelectedIndex, page);
+                var htmlstr = Html.Post(str_api + str_ChooserData, postdata);
+                return JsonConvert.DeserializeObject<ChooseDataResult>(htmlstr);
+            }
+            catch {
+                return null;
+            }
         }
 
         void ucPagerEx1_PageChanged(object sender, EventArgs e)
         {
             var chooserdata = Search(ucPagerEx1.PageIndex);
-            ChooseDataList = chooserdata.Data;
+            if(chooserdata != null)
+                ChooseDataList = chooserdata.Data;
         }
 
         private bool SaveWeight()
@@ -408,11 +418,15 @@ namespace Barcode
                     CurrentData.Real_Num = weight;
                     var postdata = string.Format("token={0}&sessionId={1}&num={2}&id={3}", token, User.SessionID, weight, CurrentData.ID);
                     var htmlstr = Html.Post(str_api + str_SaveAndPrint, postdata);
-                    var result = JsonConvert.DeserializeObject<Result>(htmlstr);
-                    CurrentData.balance_color = result.is_red.ToString();
-                    dgvData.Refresh();
-                    dv.Check(result.Status == "40000", result.Message);
-                    logger.Info("保存重量完成");
+                    dv.Check(string.IsNullOrWhiteSpace(htmlstr), "保存重量失败");
+                    if(dv.Pass)
+                    {
+                        var result = JsonConvert.DeserializeObject<Result>(htmlstr);
+                        CurrentData.balance_color = result.is_red.ToString();
+                        dgvData.Refresh();
+                        dv.Check(result.Status == "40000", result.Message);
+                        logger.Info("保存重量完成");
+                    }
                 }
                 else
                 {
@@ -546,31 +560,35 @@ namespace Barcode
         private void timer1_Tick(object sender, EventArgs e)
         {
             timer1.Enabled = false;
+            timer1.Interval = Convert.ToInt32(textBox1.Text);
             if(!isPrint)
             {                
                 var chooserdata = Search(ucPagerEx1.PageIndex);
-                if (!isPrint)
+                if (chooserdata != null)
                 {
-                    logger.Info("自动刷新数据");
-                    chooserdata.Data.ForEach(i =>
+                    if (!isPrint)
                     {
-                        var item = ChooseDataList.Find(w => w.ID == i.ID);
-                        if (item != null)
+                        logger.Info("自动刷新数据");
+                        chooserdata.Data.ForEach(i =>
                         {
-                            item.Is_Owegoods = i.Is_Owegoods;
-                            item.Real_Num = i.Real_Num;
-                            item.balance_color = i.balance_color;
-                        }
-                    });
-                    dgvData.Refresh();
-                    foreach (DataGridViewRow row in dgvData.Rows)
-                    {
-                        if (!string.IsNullOrWhiteSpace(row.Cells[colbalance_color.Name].Value.ToString()))
-                        {
-                            var val = row.Cells[colbalance_color.Name].Value.ToString();
-                            if (val == "1")
+                            var item = ChooseDataList.Find(w => w.ID == i.ID);
+                            if (item != null)
                             {
-                                row.Cells[colWeight.Name].Style.BackColor = Color.Red;
+                                item.Is_Owegoods = i.Is_Owegoods;
+                                item.Real_Num = i.Real_Num;
+                                item.balance_color = i.balance_color;
+                            }
+                        });
+                        dgvData.Refresh();
+                        foreach (DataGridViewRow row in dgvData.Rows)
+                        {
+                            if (!string.IsNullOrWhiteSpace(row.Cells[colbalance_color.Name].Value.ToString()))
+                            {
+                                var val = row.Cells[colbalance_color.Name].Value.ToString();
+                                if (val == "1")
+                                {
+                                    row.Cells[colWeight.Name].Style.BackColor = Color.Red;
+                                }
                             }
                         }
                     }
@@ -583,6 +601,33 @@ namespace Barcode
         {
             var logCfg = new FileInfo(AppDomain.CurrentDomain.BaseDirectory + "log4net.config");
             XmlConfigurator.ConfigureAndWatch(logCfg);
+        }
+
+        private void txtTop_Click(object sender, EventArgs e)
+        {
+            SetNum(txtTop);
+        }
+
+        private void SetNum(TextBox txt)
+        {
+            var num = new Num();
+            if (num.ShowDialog() == DialogResult.OK)
+                txt.Text = num.NumValue;
+        }
+
+        private void txtDown_Click(object sender, EventArgs e)
+        {
+            SetNum(txtDown);
+        }
+
+        private void textBox1_Click(object sender, EventArgs e)
+        {
+            SetNum(textBox1);
+        }
+
+        private void txtWeight_2_Click(object sender, EventArgs e)
+        {
+            SetNum(txtWeight_2);
         }
     }
 
